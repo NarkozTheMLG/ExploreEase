@@ -8,16 +8,22 @@
         body, html {
           margin: 0;
           padding: 0;
-          overflow: hidden; /* Prevent scrollbars */
+          height: 100%;
+          overflow: hidden; /* scrollbarları engellio */
         }
         canvas {
           display: block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -30%);
+          border: 1px solid black; 
         }
       </style>
     <script src = "js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-    <canvas id="myCanvas" width="1400" height="700"></canvas>
-    <script src = "js/myJs.js"></script>
+    <canvas id="myCanvas" width="960" height="540"></canvas>
+    <script type="module" src = "js/myJs.js"></script>
 </body>
 </html>
