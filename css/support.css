@@ -1,0 +1,69 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f6f5f3;
+}
+
+.hero-section {
+    margin-top: 200px; /* same as nav height */
+}
+
+nav{
+    height: 200px; 
+    line-height: 200px; 
+    background-color: #f6f5f3 !important; 
+    color: #f6f5f3;
+}
+  
+nav .brand-logo img{
+    height: 200px; 
+    width: 200px;
+}
+  
+nav .nav-wrapper{
+    height: 100%; /*nav-wrapper takes the full height of the navbar */
+}
+  
+
+nav ul li a {
+    color: black; /* makes links black */
+    font-weight: bold;
+}
+  
+nav ul li a:hover {
+    color: red; 
+}
+  
+
+.faq-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+  
+.faq-section .collection-item {
+    font-size: 16px;
+    color: #333;
+}
+  
+ 
+.form-section {
+    margin-bottom: 50px;
+}
+  
+.form-section .input-field input,
+.form-section .input-field textarea {
+    background-color: #f6f5f3;
+    border-radius: 4px;
+    padding-left: 10px;
+}
+  
+button[type="submit"] {
+    font-weight: bold;
+}
+  
+
+.page-footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+}

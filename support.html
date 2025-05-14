@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support</title>
+
+    <!-- Materialize CSS CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/support.css">
+
+  <style>
+    
+
+    .faq-section h5 {
+      font-weight: bold;
+    }
+
+    .form-section {
+      background-color: #f2f2f2;
+      padding: 30px;
+      border-radius: 10px;
+    }
+    
+    .hero-section {
+    background-image: url('images/supportBG.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
+    }
+    </style>
+</head>
+<body>
+    
+<!-- Navigation -->
+<div class="navbar-fixed">
+    <nav class="white">
+      <div class="nav-wrapper container">
+        <a href="index.html" class="brand-logo left">
+          <img src="images/logo2.png" alt="ExploreEase Logo" style="height: 120px;">
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">More</a></li>
+        </ul>
+      </div>
+    </nav>
+</div>
+
+  <section class="hero-section">
+    <h4 class="white-text">How can we help you?</h4>
+    <input
+      id="search"
+      type="text"
+      class="white browser-default"
+      placeholder="Search help topics..."
+      style="padding: 10px; border-radius: 5px; max-width: 600px; width: 80%; margin-top: 20px;"
+    >
+  </section>
+
+  
+
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <h5>Frequently Asked Questions</h5>
+    <ul class="collection">
+      <li class="collection-item">How do I reset my password?</li>
+      <li class="collection-item">How do I cancel my booking?</li>
+      <li class="collection-item">How can I contact the hotel?</li>
+      <li class="collection-item">Where can I find my booking details?</li>
+    </ul>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="form-section">
+    <h5>Contact Us</h5>
+    <form id="supportForm">
+      <div class="input-field">
+        <input id="name" type="text" class="validate" required>
+        <label for="name">Your Name</label>
+      </div>
+
+      <div class="input-field">
+        <input id="email" type="email" class="validate" required>
+        <label for="email">Email</label>
+      </div>
+
+      <div class="input-field">
+        <textarea id="message" class="materialize-textarea" required></textarea>
+        <label for="message">Your Message</label>
+      </div>
+
+      <button class="btn waves-effect waves-light teal" type="submit" name="action" style="margin-top: 10px;">Submit</button>
+    </form>
+  </div>
+
+  <footer class="page-footer">
+    <div class="center-align">
+      © 2025 TripEase Support
+    </div>
+  </footer>
+
+
+</body>
+</html>
+
