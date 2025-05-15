@@ -4,11 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExploreEase</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="js/main.js">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    
 </head>
 <body>
+<!-- Navigation bar -->
+  <header>
+    <div class="navbar">
+      <div class="logo">ExploreEase</div>
+      <ul class="navbuttons">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Tours</a></li>
+        <li><a href="#">Hotels</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="support.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </header>
 
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="js/main.js">
+    <!-- Hero -->
+  <section class="hero">
+    <h1>Let us take you to your<br><span>Dream Destinations</span></h1>
+    <div class="search-bar">
+      <select>
+        <option>Asia</option>
+        <option>Europe</option>
+        <option>Americas</option>
+        <option>Middle East</option>
+        <option>Africa</option>
+      </select>
+      <select>
+        <option>All Countries</option>
+        <option>Japan</option>
+        <option>Spain</option>
+        <option>Dubai</option>
+        <option>Italy</option>
+        <option>New York</option>
+        <option>Johannesburg</option>
+      </select>
+      <input type="number" placeholder="Your Budget ($)">
+      <button id="searchBtn">Find Your Tours</button>
+    </div>
+  </section>
 
+  <!-- popular destinations -->
+  <section class="offers">
+    <h2>POPULAR DESTINATIONS</h2>
+    <div class="cards">
+      <div class="card"><img src="images/uk.jpg"><p>United Kingdom - $5000</p></div>
+      <div class="card"><img src="images/spain.png"><p>Spain - $4000</p></div>
+      <div class="card"><img src="images/turkey.png"><p>Turkey - $2000</p></div>
+      <div class="card"><img src="images/italy.jpg"><p>Italy - $3000</p></div>
+      <div class="card"><img src="images/japan.jpg"><p>Japan - $4000</p></div>
+      <div class="card"><img src="images/india.jpg"><p>India - $4000</p></div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why">
+    <h2>Why Choose Us?</h2>
+    <div class="features">
+      <div class="feature"><i class="fa fa-tag"></i><p>Affordable Price</p></div>
+      <div class="feature"><i class="fa fa-globe"></i><p>Wide Variety</p></div>
+      <div class="feature"><i class="fa fa-thumbs-up"></i><p>Qualified Service</p></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>Testimonials</h2>
+    <div class="quotes">
+      <div class="quote"><p>“Amazing service!”</p><span>- John Smith</span></div>
+      <div class="quote"><p>“Very smooth process.”</p><span>- Susan Hill</span></div>
+      <div class="quote"><p>“Highly recommend.”</p><span>- David Williams</span></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 ExploreEase | All Rights Reserved</p>
+    <div class="socials">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-linkedin"></i>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

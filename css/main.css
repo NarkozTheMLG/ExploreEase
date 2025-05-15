@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  body {
+    background: #fff;
+    color: #333;
+  }
+  
+  .navbar {
+    background: #003366;
+    color: white;
+    padding: 15px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    
+  }
+  
+  .navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar .navbuttons {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    
+  }
+  
+  .navbar .navbuttons li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .hero {
+    background-image: url('../images/indexBG.png');
+    height: 450px;
+    color: orange;
+    text-align: center;
+    font-style: italic;
+    
+    
+    padding-top: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
+    
+    background-size: cover;
+    background-position: center;
+    
+  }
+  
+  .hero h1 {
+    font-size: 36px;
+    line-height: 1.5;
+    text-decoration: solid;
+    text-decoration-color: #003366;
+  }
+  
+  .hero span {
+    font-weight: bold;
+    font-size: 40px;
+  }
+  
+  .search-bar {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .search-bar select,
+  .search-bar input,
+  .search-bar button {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .search-bar button {
+    background: orange;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .offers {
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .offers .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .card {
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+  }
+  
+  .card p {
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  .why {
+    background: #f0f8ff;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+  }
+  
+  .feature i {
+    font-size: 30px;
+    color: #003366;
+  }
+  
+  .feature p {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .testimonials {
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .quotes {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+  }
+  
+  .quote p {
+    font-style: italic;
+  }
+  
+  .quote span {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  footer {
+    background: #003366;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .socials i {
+    margin: 0 10px;
+    cursor: pointer;
+  }

@@ -1,32 +1,35 @@
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #f6f5f3;
 }
 
 .hero-section {
-    margin-top: 200px; /* same as nav height */
+    margin-top: 0px; 
 }
 
 nav{
-    height: 200px; 
-    line-height: 200px; 
-    background-color: #f6f5f3 !important; 
+    height: 100px; 
+    line-height: 100px; 
+    background-color: #003366; 
     color: #f6f5f3;
 }
   
 nav .brand-logo img{
-    height: 200px; 
-    width: 200px;
+    height: 250px; 
+    width: 300px;
+    
 }
   
 nav .nav-wrapper{
-    height: 100%; /*nav-wrapper takes the full height of the navbar */
+    width: 100%;
+    height: 100%; 
+    background-color: #003366; 
 }
   
 
 nav ul li a {
-    color: black; /* makes links black */
+    color: white; 
     font-weight: bold;
 }
   
@@ -38,6 +41,7 @@ nav ul li a:hover {
 .faq-section {
     margin-top: 40px;
     margin-bottom: 40px;
+    
 }
   
 .faq-section .collection-item {
@@ -48,6 +52,7 @@ nav ul li a:hover {
  
 .form-section {
     margin-bottom: 50px;
+    
 }
   
 .form-section .input-field input,
