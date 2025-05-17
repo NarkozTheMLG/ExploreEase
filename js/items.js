@@ -69,4 +69,4 @@ class Ball {
 
 
 
-  export { Ball };
+  export { Ball, Chest };
