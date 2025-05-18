@@ -1,4 +1,4 @@
-import { Ball, Chest } from "./items.js";
+import { Ball, Chest, Boom } from "./items.js";
 
 export const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
@@ -15,6 +15,7 @@ const gravity = 8;
 let startTime = Date.now();
 let totalTime = 0;
 let score = 0;
+let sign = 1;
 
 
 const chestImg = new Image();
@@ -22,6 +23,7 @@ chestImg.src = "/images/chest_1.png";
 const newChest = new Chest(0, 1, 0,190,150, chestImg);
 
 let items = [];
+let booms = [];
 let assetsLoaded = 0;
 export const gameState= {
     gameTime: 0,
@@ -39,6 +41,9 @@ $(document).keyup(function(e){
 let curX = 56; //56dan baslio
 const minBarX = 56;
 const maxBarX = 1820;
+
+const boomEffect = new Image();
+boomEffect.src = "images/boom_effect.png"
 
 const scoreBoard = new Image();
 scoreBoard.src = "images/score.svg";
@@ -107,7 +112,13 @@ chestImg.onload = function () {
 function spawnBeachBall() {
     const itemImg = new Image();
     itemImg.src = "/images/beach_ball.png";
-    const newItem = new Ball(100, 0, 4, 0,80,80, "positive", itemImg,0.9);
+    const random = Math.floor(Math.random() * (10 - 3)) + 4;
+    let size = random *10;
+    let velocity = random;
+    let startX = size/10;
+    if(sign === -1)
+      startX = canvas.width -size;
+    const newItem = new Ball(startX, size/10, sign*velocity,-velocity/2,size,size, "positive", itemImg,0.9);
     items.push(newItem);
   }
 
@@ -115,15 +126,31 @@ function spawnBeachBall() {
     items.forEach(item => {
   if (isColliding(newChest, item)) {
     item.isHit = true;
-    score++;
+    score += 14-item.width/10;
   }
  });
     items.forEach(item => item.update());
     items.forEach(item => item.draw(ctx));
-    let newitems = [];
+    let newItems = [];
     for(let i = 0;i< items.length;i++)
-        newitems = items.filter(item=>!item.isHit);
-    items = newitems;
+        newItems = items.filter(item=>!item.isHit);
+    items = newItems;
+
+    // boom here
+    booms.forEach(boom => boom.update());
+    booms.forEach(boom => boom.draw(ctx));
+    for(let i = 0;i< items.length;i++){
+      if(items[i].bounced == 3){
+          console.log(`I have bounced: ${items[i].bounced}`);
+      const newBoom = new Boom(items[i].x,items[i].y-(items[i].height/2), items[i].width*1.3,items[i].height*1.3, boomEffect);
+      booms.push(newBoom);
+        items[i].isHit = true;
+      }
+    }
+    let newBooms = [];
+        for(let i = 0;i< booms.length;i++)
+        newBooms = booms.filter(boom=>!boom.end);
+      booms = newBooms;
   }
  
   function updateChest(){
@@ -153,6 +180,8 @@ function gameLoop() {
 
 gameLoop();
 setInterval(() => {
+    if (Math.random() < 0.5) 
+      sign *=-1;
     spawnBeachBall(); 
   }, 2000);
   setInterval(() => {

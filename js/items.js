@@ -13,6 +13,7 @@ class Ball {
       this.gravity = 0.1;
       this.bounceFactor = bounceFactor;
       this.isHit = false;
+      this.bounced = 0;
       this.angle = 0;
     }
     update() {
@@ -27,6 +28,7 @@ class Ball {
         if (this.y + this.height > canvas.height) {
           this.y = canvas.height - this.height;
           this.vy *= -this.bounceFactor;
+          this.bounced++;
         }
         if (this.x < 0 || this.x + this.width > canvas.width) this.vx *= -1;
     }
@@ -73,6 +75,30 @@ class Ball {
     }
   }
 
+class Boom {
+    constructor(x, y,w,h,image) {
+      this.x = x;
+      this.y = y;
+      this.image = image; 
+      this.width = w;
+      this.height = h;
+      this.end = false;
+      this.alpha = 1;
+    }
+     update() {
+      this.alpha -= 0.01;
+      if (this.alpha <= 0.01) 
+        this.end = true;
+    }
+    draw(ctx) {
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    ctx.restore();
+    }
+  }
 
 
-  export { Ball, Chest };
+
+
+  export { Ball, Chest, Boom };
