@@ -1,7 +1,11 @@
-import { Ball } from "./items.js";
+import { Ball, Chest } from "./items.js";
 
 export const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
+
+const getTable = $("table");
+const getBackButton = $("#back");
+
 const beachBall = new Image();
 beachBall.src = "../images/beach_ball.png";
 const backGround = new Image();
@@ -10,6 +14,12 @@ const gravity = 8;
 
 let startTime = Date.now();
 let totalTime = 0;
+let score = 0;
+
+
+const chestImg = new Image();
+chestImg.src = "/images/chest_1.png";
+const newChest = new Chest(0, 1, 0,190,150, chestImg);
 
 let items = [];
 let assetsLoaded = 0;
@@ -29,14 +39,25 @@ $(document).keyup(function(e){
 let curX = 56; //56dan baslio
 const minBarX = 56;
 const maxBarX = 1820;
+
+const scoreBoard = new Image();
+scoreBoard.src = "images/score.svg";
+
 const timebarimg1 = new Image();
 timebarimg1.src = "images/menu_design1.svg"
 
 const backbutton = new Image();
 backbutton.src = "images/backbutton.svg"
 
+scoreBoard.onload = function () {
+  const score = document.getElementById("score");
+  score.style.width = (scoreBoard.naturalWidth)+ "px";
+  score.style.backgroundImage = `url('${scoreBoard.src}')`;
+  score.style.backgroundSize = "contain";
+}
+
 backbutton.onload = function () {
-  const backButton = document.getElementById("back");
+    const backButton = document.getElementById("back");
   backButton.style.width = (backbutton.naturalWidth * 0.5)+ "px";
   backButton.style.height = (backbutton.naturalHeight * 0.5) +"px";
   backButton.style.backgroundImage = `url('${backbutton.src}')`;
@@ -69,23 +90,34 @@ function drawScene(){
 
 backGround.onload = function () {
     assetsLoaded++;
-    if (assetsLoaded === 2) 
+    if (assetsLoaded === 3) 
         drawScene();
 };
 beachBall.onload = function () {
     assetsLoaded++;
-    if (assetsLoaded === 2) 
+    if (assetsLoaded === 3) 
+        drawScene();
+};
+chestImg.onload = function () {
+    assetsLoaded++;
+    if (assetsLoaded === 3) 
         drawScene();
 };
 
 function spawnBeachBall() {
     const itemImg = new Image();
     itemImg.src = "/images/beach_ball.png";
-    const newItem = new Ball(100, 0, 4, 0,40,40, "positive", itemImg,0.9);
+    const newItem = new Ball(100, 0, 4, 0,80,80, "positive", itemImg,0.9);
     items.push(newItem);
   }
 
   function updateItems() {
+    items.forEach(item => {
+  if (isColliding(newChest, item)) {
+    item.isHit = true;
+    score++;
+  }
+ });
     items.forEach(item => item.update());
     items.forEach(item => item.draw(ctx));
     let newitems = [];
@@ -93,14 +125,29 @@ function spawnBeachBall() {
         newitems = items.filter(item=>!item.isHit);
     items = newitems;
   }
+ 
+  function updateChest(){
+    newChest.update(KEYS);
+    newChest.draw(ctx);
+  }
 
+function isColliding(rect1, rect2) {
+  return (
+    rect1.x < rect2.x + rect2.width &&
+    rect1.x + rect1.width > rect2.x &&
+    rect1.y < rect2.y + rect2.height &&
+    rect1.y + rect1.height > rect2.y
+  );
+}
 function gameLoop() {
     const curTime = Date.now();
     gameState.gameTime++;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawScene();
     updateItems();
+    updateChest();
     gameState.gameTime = curTime;
+    $("#scoreText").text("Score: " + score);
     requestAnimationFrame(gameLoop);
   }
 
@@ -110,10 +157,23 @@ setInterval(() => {
   }, 2000);
   setInterval(() => {
     totalTime++;
-    console.log(totalTime);
+    console.log(`Time: ${totalTime}`);
   }, 1000);
   setInterval(() => {
     updateTimeBar();
   }, 50);
   
-  
+
+function resizeCanvas() {
+    const newWidth = window.innerWidth * 0.8;
+    const newHeight = window.innerHeight * 0.8;
+    console.log(`W: ${window.innerWidth}  H: ${window.innerHeight}`);
+    canvas.width = newWidth;
+    canvas.height = newHeight;
+    const scaleX = window.innerWidth/screen.width;
+    const scaleY = window.innerHeight/screen.height;
+    getTable.css("transform", `translate(-50%, -50%) scaleX(${scaleX}) scaleY(${scaleY})`);
+    getBackButton.css("transform", `translate(0%, 0%) scaleX(${scaleX}) scaleY(${scaleY})`);
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);

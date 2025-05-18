@@ -1,4 +1,4 @@
-import { gameState, canvas } from "./myJs.js";
+import { gameState, canvas, KEYS } from "./myJs.js";
 
 class Ball {
     constructor(x, y, vx, vy,w,h, type, image,bounceFactor) {
@@ -40,23 +40,29 @@ class Ball {
   }
 
   class Chest {
-    constructor(x, y, vx, vy,w,h, type, image,bounceFactor) {
+    constructor(x, vx, vy,w,h, image) {
+      this.xPercent = x / canvas.width; 
       this.x = x;
-      this.y = y;
+      this.y = canvas.height;
       this.vx = vx; 
       this.vy = vy; 
-      this.type = type;
       this.image = image; 
       this.width = w;
       this.height = h;
     }
     update() {
-        if(gameState.gameTime % gameState.gameSpeed === 0) {
-        this.x += this.vx;
-        this.y += this.vy;
-        }
-    
-        if (this.x < 0 || this.x + this.width > canvas.width) this.vx *= -1;
+      this.x = this.xPercent * canvas.width;
+        this.y = canvas.height-this.height;
+      if(this.vx < 5)
+    this.vx *= 1.02;
+  if (KEYS["ArrowLeft"] && !KEYS["ArrowRight"] && this.x > 0) {
+    this.x -= this.vx;
+  } else if (KEYS["ArrowRight"] && !KEYS["ArrowLeft"] && this.x + this.width < canvas.width) {
+    this.x += this.vx;
+  } else {
+    this.vx = 1; // reset speed if no valid key or both pressed
+  }
+      this.xPercent = this.x / canvas.width;
     }
     draw(ctx) {
         ctx.save();
