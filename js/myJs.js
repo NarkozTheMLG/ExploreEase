@@ -15,18 +15,27 @@ const backGround = new Image();
 backGround.src = "images/beach_background.jpg";
 const gravity = 8;
 
-export let gamePaused = true;
+export let gameFinished = false;
 let startTime = Date.now();
 let totalTime = 0;
-let score = 2000;
+let score = 0;
 let sign = 1;
 
+let isPaused = false;
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    isPaused = true;
+    console.log("Game paused");
+  } else {
+    isPaused = false;
+    console.log("Game resumed");
+  }
+});
 
 const chestImg = new Image();
 chestImg.src = "/images/chest_1.png";
-const newChest = new Chest(0, 1, 0,190,150, chestImg);
-
-
+const newChest = new Chest(0, canvas.height, 0,190,150, chestImg);
 
 let items = [];
 let booms = [];
@@ -89,16 +98,14 @@ timebarimg1.onload = function () {
 function updateTimeBar(){
     curX += (maxBarX-minBarX)/(30*20);
     if(curX >= maxBarX)
-        curX = 56;
+        curX = 56;  
      timebar2.style.width =`${curX}px`;
 }
-
 
 function drawScene(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
      ctx.drawImage(backGround,0,0,canvas.width,canvas.height);
 }
-
 
 backGround.onload = function () {
     assetsLoaded++;
@@ -133,7 +140,6 @@ function spawnBeachBall() {
     items.forEach(item => {
   if (isColliding(newChest, item)) {
     item.isHit = true;
-    gamePaused = true;
     score += 14-item.width/10;
   }
  });
@@ -190,7 +196,7 @@ function gameLoop() {
     updateChest();
     gameState.gameTime = curTime;
     $("#scoreText").text("Score: " + score);
-    if(gamePaused){
+    if(gameFinished||isPaused){
       
     updateGameOver();
       
@@ -202,24 +208,29 @@ function gameLoop() {
 gameLoop();
 
 setInterval(() => {
-  if (gamePaused) return;
+  if (gameFinished||isPaused) return;
     if (Math.random() < 0.5) 
       sign *=-1;
     spawnBeachBall(); 
   }, 2000);
   setInterval(() => {
-  if (gamePaused) return;
+  if (gameFinished||isPaused) return;
     totalTime++;
     console.log(`Time: ${totalTime}`);
+    if(totalTime == 30)
+      gameFinished = true;
   }, 1000);
   setInterval(() => {
-  if (gamePaused) return;
+  if (gameFinished||isPaused) return;
     updateTimeBar();
   }, 50);
   
 
 function resizeCanvas() {
-
+    newGameOver.x = canvas.width/4;
+    newGameOver.y = canvas.height/3;
+    newGameOver.width = canvas.width/2;
+    newGameOver.height = canvas.height/1.2;
     const newWidth = window.innerWidth * 0.8;
     const newHeight = window.innerHeight * 0.8;
     console.log(`W: ${window.innerWidth}  H: ${window.innerHeight}`);
@@ -230,12 +241,13 @@ function resizeCanvas() {
     getTable.css("transform", `translate(-50%, -50%) scaleX(${scaleX}) scaleY(${scaleY})`);
     getBackButton.css("transform", `translate(0%, 0%) scaleX(${scaleX}) scaleY(${scaleY})`);
 }
-function resizeGameOver(){
+function resizeOnLoad(){
+    newChest.y = canvas.height;
     newGameOver.x = canvas.width/4;
     newGameOver.y = canvas.height/3;
     newGameOver.width = canvas.width/2;
-    newGameOver.height = canvas.height/1.5;
+    newGameOver.height = canvas.height/1.2;
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
-window.addEventListener('load', resizeGameOver);
+window.addEventListener('load', resizeOnLoad);

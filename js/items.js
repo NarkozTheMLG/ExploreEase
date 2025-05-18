@@ -1,4 +1,4 @@
-import { gameState, canvas, KEYS, gamePaused} from "./myJs.js";
+import { gameState, canvas, KEYS, gameFinished} from "./myJs.js";
 
 class Ball {
     constructor(x, y, vx, vy,w,h, type, image,bounceFactor) {
@@ -17,7 +17,7 @@ class Ball {
       this.angle = 0;
     }
     update() {
-      if(!gamePaused){
+      if(!gameFinished){
         if(gameState.gameTime % gameState.gameSpeed === 0) {
         this.vy += this.gravity;
         this.x += this.vx;
@@ -55,7 +55,7 @@ class Ball {
       this.height = h;
     }
     update() {
-      if(!gamePaused){
+      if(!gameFinished){
       this.x = this.xPercent * canvas.width;
         this.y = canvas.height-this.height;
       if(this.vx < 5)
@@ -90,7 +90,7 @@ class Boom {
       this.alpha = 1;
     }
      update() {
-      if(!gamePaused) {
+      if(!gameFinished) {
       this.alpha -= 0.01;
       if (this.alpha <= 0.01) 
         this.end = true;
@@ -130,7 +130,7 @@ class GameOver {
       this.scoreStart += this.step;
       this.count++;
     }
-      if(this.y > canvas.height/8) this.y-=0.5;
+      if(this.y > canvas.height/12) this.y-=0.6;
       if (this.alpha < 1) this.alpha += 0.003;
     }
     draw(ctx,score) {
