@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+
         body, html {
           margin: 0;
           padding: 0;
@@ -14,29 +15,39 @@
           background-repeat: no-repeat;
           background-size: cover;
         }
-
-        #container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-      } 
         canvas {
+          scale: 0.97;
           display: block;
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -41%);
-          border: 1px solid black; 
-          
+        }
+        table{
+          position: relative;
+          table-layout: fixed;
+          top: 13%;
+          left: 51%;
+          transform: translate(-50%, -50%) scaleX(1);
+          width: 1920px;
+          height: 150px;
+          background-size: auto;
+          background-position: center;
+          background-repeat: no-repeat;
+          vertical-align: middle;
+          overflow: hidden;
+          border: 1px solid red;
+          border-collapse: collapse;
         }
         #timebar1{
+          scale: 0.5;
           position: relative;
-          top: 14%;
-          left: 50%;
-          transform: translate(-50%, -92%);
+          top: 30%;
+          left: 40%;
+          transform: translate(-90%, 0%);
           width: 1900px;
           height: 150px;
-          border: 1px solid red;
+          border: 1px  ;
           background-size: auto;
           background-position: center;
           background-repeat: no-repeat;
@@ -44,7 +55,7 @@
         #timebar2{
           background-repeat: no-repeat;
           background-size: auto;
-          position: absolute;
+          position: block;
           top: 0;
           width: 56px;
           left: 9px;
@@ -52,24 +63,50 @@
         }
         #back{
           position: absolute;
-          top: 0;
-          left: 0;
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
           cursor: pointer;
         }
+        #score{
+          scale: 1;
+          position: relative;
+          width: 1900px;
+          height: 150px;
+          background-size: auto;
+          background-position: center;
+          background-repeat: no-repeat;
+
+        }
+        #scoreText {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #470e04;         
+          font-size: 48px;    
+          font-weight: bold;
+        }
       </style>
     <script src = "js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-  <div id = "container">
   <div id="back"></div>
-    <div id = "timebar1">
-      <div id = "timebar2"></div>
-  </div>
-    <canvas id="myCanvas" width="1920" height="1080"></canvas>
+<table id ="table">
+  <tr>
+    <td>
+      <div id="timebar1">
+        <div id="timebar2"></div>
+      </div>
+    </td>
+    <td>
+      <div id="score">
+          <div id="scoreText">Score: 0</div>
+      </div>
+    </td>
+  </tr>
+</table>
+    <canvas id="myCanvas" ></canvas>
     <script type="module" src = "js/myJs.js"></script>
-  </div>
   </body>
 </html>
