@@ -1,4 +1,4 @@
-import { Ball, Chest } from "./items.js";
+import { Ball, Chest, Boom, GameOver } from "./items.js";
 
 export const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
@@ -6,22 +6,30 @@ const ctx = canvas.getContext("2d");
 const getTable = $("table");
 const getBackButton = $("#back");
 
+const gameOverImg = new Image();
+gameOverImg.src = "/images/game_over.svg"
+const newGameOver = new GameOver(canvas.width/2, canvas.height/2, canvas.width/4,canvas.height/4, gameOverImg);
 const beachBall = new Image();
-beachBall.src = "../images/beach_ball.png";
+beachBall.src = "/images/beach_ball.png";
 const backGround = new Image();
 backGround.src = "images/beach_background.jpg";
 const gravity = 8;
 
+export let gamePaused = true;
 let startTime = Date.now();
 let totalTime = 0;
-let score = 0;
+let score = 2000;
+let sign = 1;
 
 
 const chestImg = new Image();
 chestImg.src = "/images/chest_1.png";
 const newChest = new Chest(0, 1, 0,190,150, chestImg);
 
+
+
 let items = [];
+let booms = [];
 let assetsLoaded = 0;
 export const gameState= {
     gameTime: 0,
@@ -39,6 +47,9 @@ $(document).keyup(function(e){
 let curX = 56; //56dan baslio
 const minBarX = 56;
 const maxBarX = 1820;
+
+const boomEffect = new Image();
+boomEffect.src = "images/boom_effect.png"
 
 const scoreBoard = new Image();
 scoreBoard.src = "images/score.svg";
@@ -88,6 +99,7 @@ function drawScene(){
      ctx.drawImage(backGround,0,0,canvas.width,canvas.height);
 }
 
+
 backGround.onload = function () {
     assetsLoaded++;
     if (assetsLoaded === 3) 
@@ -107,7 +119,13 @@ chestImg.onload = function () {
 function spawnBeachBall() {
     const itemImg = new Image();
     itemImg.src = "/images/beach_ball.png";
-    const newItem = new Ball(100, 0, 4, 0,80,80, "positive", itemImg,0.9);
+    const random = Math.floor(Math.random() * (10 - 3)) + 4;
+    let size = random *10;
+    let velocity = random;
+    let startX = size/10;
+    if(sign === -1)
+      startX = canvas.width -size;
+    const newItem = new Ball(startX, size/10, sign*velocity,-velocity/2,size,size, "positive", itemImg,0.9);
     items.push(newItem);
   }
 
@@ -115,15 +133,32 @@ function spawnBeachBall() {
     items.forEach(item => {
   if (isColliding(newChest, item)) {
     item.isHit = true;
-    score++;
+    gamePaused = true;
+    score += 14-item.width/10;
   }
  });
     items.forEach(item => item.update());
     items.forEach(item => item.draw(ctx));
-    let newitems = [];
+    let newItems = [];
     for(let i = 0;i< items.length;i++)
-        newitems = items.filter(item=>!item.isHit);
-    items = newitems;
+        newItems = items.filter(item=>!item.isHit);
+    items = newItems;
+
+    // boom here
+    booms.forEach(boom => boom.draw(ctx));
+    booms.forEach(boom => boom.update());
+    for(let i = 0;i< items.length;i++){
+      if(items[i].bounced == 3){
+          console.log(`I have bounced: ${items[i].bounced}`);
+      const newBoom = new Boom(items[i].x,items[i].y-(items[i].height/2), items[i].width*1.3,items[i].height*1.3, boomEffect);
+      booms.push(newBoom);
+        items[i].isHit = true;
+      }
+    }
+    let newBooms = [];
+        for(let i = 0;i< booms.length;i++)
+        newBooms = booms.filter(boom=>!boom.end);
+      booms = newBooms;
   }
  
   function updateChest(){
@@ -131,12 +166,19 @@ function spawnBeachBall() {
     newChest.draw(ctx);
   }
 
+  function updateGameOver(){
+
+
+    newGameOver.update(score);
+    newGameOver.draw(ctx,score);
+  }
+
 function isColliding(rect1, rect2) {
   return (
-    rect1.x < rect2.x + rect2.width &&
-    rect1.x + rect1.width > rect2.x &&
-    rect1.y < rect2.y + rect2.height &&
-    rect1.y + rect1.height > rect2.y
+    rect1.x < rect2.x + rect2.width*0.9 &&
+    rect1.x + rect1.width*0.9 > rect2.x &&
+    rect1.y < rect2.y + rect2.height*0.7 &&
+    rect1.y + rect1.height*0.7 > rect2.y
   );
 }
 function gameLoop() {
@@ -148,23 +190,36 @@ function gameLoop() {
     updateChest();
     gameState.gameTime = curTime;
     $("#scoreText").text("Score: " + score);
+    if(gamePaused){
+      
+    updateGameOver();
+      
+    }
+
     requestAnimationFrame(gameLoop);
   }
 
 gameLoop();
+
 setInterval(() => {
+  if (gamePaused) return;
+    if (Math.random() < 0.5) 
+      sign *=-1;
     spawnBeachBall(); 
   }, 2000);
   setInterval(() => {
+  if (gamePaused) return;
     totalTime++;
     console.log(`Time: ${totalTime}`);
   }, 1000);
   setInterval(() => {
+  if (gamePaused) return;
     updateTimeBar();
   }, 50);
   
 
 function resizeCanvas() {
+
     const newWidth = window.innerWidth * 0.8;
     const newHeight = window.innerHeight * 0.8;
     console.log(`W: ${window.innerWidth}  H: ${window.innerHeight}`);
@@ -175,5 +230,12 @@ function resizeCanvas() {
     getTable.css("transform", `translate(-50%, -50%) scaleX(${scaleX}) scaleY(${scaleY})`);
     getBackButton.css("transform", `translate(0%, 0%) scaleX(${scaleX}) scaleY(${scaleY})`);
 }
+function resizeGameOver(){
+    newGameOver.x = canvas.width/4;
+    newGameOver.y = canvas.height/3;
+    newGameOver.width = canvas.width/2;
+    newGameOver.height = canvas.height/1.5;
+}
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
+window.addEventListener('load', resizeGameOver);
