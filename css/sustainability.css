@@ -1,19 +1,21 @@
-/* Sustainability Page Common Styles */
-/* Reset and Base Styles */
+/* Sustainability Page Styles */
+
+/* Container */
 .container {
     width: 80%;
     margin: 0 auto;
     max-width: 1200px;
 }
 
+/* Section Base */
 .section {
-    background-color: #fff;
+    background: linear-gradient(180deg, #ffffff, #f8f8f8);
+    transition: opacity 0.3s ease;
 }
 
 /* Card Styles */
 .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
 }
 
 .card:hover {
@@ -25,12 +27,12 @@
     padding: 20px;
     font-size: 15px;
     color: #333;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .card-title {
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
 }
 
 /* Button Styles */
@@ -39,50 +41,56 @@
     color: white;
     text-transform: uppercase;
     font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', Arial, sans-serif;
+    border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
     background-color: red;
-    transform: translateY(-2px);
+    transform: scale(1.05);
 }
 
-/* Accordion Styles */
-#sustainability-accordion h3 {
+/* Collapsible Styles */
+.collapsible {
+    border: none;
+    box-shadow: none;
+}
+
+.collapsible-header {
     background-color: #003366;
     color: white;
     padding: 15px;
-    margin: 0;
     font-size: 18px;
-    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 5px;
     transition: background-color 0.3s ease;
 }
 
-#sustainability-accordion h3:hover {
+.collapsible-header:hover {
     background-color: #004080;
 }
 
-#sustainability-accordion div {
+.collapsible-header i {
+    margin-right: 10px;
+}
+
+.collapsible-body {
     background-color: #f0f0f0;
     padding: 20px;
     font-size: 15px;
     color: #333;
-    line-height: 1.6;
+    border-radius: 0 0 5px 5px;
 }
 
 /* Stats Section */
-.stats {
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.5);
-    background-blend-mode: darken;
-}
-
 .stats p {
     font-size: 16px;
     margin-top: 10px;
+    color: white;
 }
 
-/* Scroll Progress Bar */
+/* Progress Bar */
 #progress-bar {
     position: fixed;
     top: 0;
@@ -94,6 +102,28 @@
     transition: width 0.3s ease;
 }
 
+/* Footer Newsletter */
+#newsletter-form .input-field {
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+#newsletter-form .btn {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Modal Styles */
+.modal {
+    border-radius: 10px;
+    max-width: 600px;
+}
+
+.modal-content h4 {
+    color: #003366;
+    font-size: 24px;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 992px) {
     .container {
@@ -101,6 +131,9 @@
     }
     .card {
         margin-bottom: 20px;
+    }
+    #newsletter-form .input-field {
+        max-width: 250px;
     }
 }
 
@@ -113,5 +146,11 @@
     }
     .btn {
         width: 100%;
+    }
+    .testimonial-slider {
+        gap: 15px;
+    }
+    .testimonial {
+        flex: 0 0 250px;
     }
 }

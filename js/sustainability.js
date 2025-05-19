@@ -1,30 +1,29 @@
-// Sustainability Page JavaScript
-$(document).ready(function() {
-    // Initialize Materialize Components
+// Initialize Materialize Components
+document.addEventListener('DOMContentLoaded', function() {
     M.AutoInit();
+    var modals = document.querySelectorAll('.modal');
+    M.Modal.init(modals);
+    var tooltips = document.querySelectorAll('[data-tooltip]');
+    M.Tooltip.init(tooltips);
+    var collapsibles = document.querySelectorAll('.collapsible');
+    M.Collapsible.init(collapsibles);
+});
 
-    // Initialize jQuery Accordion
-    $("#sustainability-accordion").accordion({
-        collapsible: true,
-        active: false,
-        heightStyle: "content",
-        animate: 300
-    });
-
-    // Form Validation and Submission
+// jQuery Document Ready
+$(document).ready(function() {
+    // Form Handling (Sustainability Form)
     $("#sustainability-form").on("submit", function(e) {
         e.preventDefault();
         const name = $("#name").val().trim();
         const email = $("#email").val().trim();
         const message = $("#message").val().trim();
 
-        // Client-side validation
         if (!name.match(/[A-Za-z\s]{2,}/)) {
-            $("#form-message").text("Please enter a valid name.").css("color", "red");
+            $("#form-message").text("Enter a valid name.").css("color", "red");
             return;
         }
         if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            $("#form-message").text("Please enter a valid email.").css("color", "red");
+            $("#form-message").text("Enter a valid email.").css("color", "red");
             return;
         }
         if (message.length < 10) {
@@ -32,77 +31,111 @@ $(document).ready(function() {
             return;
         }
 
-        // Success message
-        $("#form-message").text("Thank you for joining our sustainability mission! We'll respond soon.").css("color", "#003366");
+        $("#form-message").text("Thank you for your message!").css("color", "#003366");
+        const modal = M.Modal.getInstance(document.getElementById("video-modal"));
+        modal.open();
         $("#sustainability-form")[0].reset();
         M.updateTextFields();
     });
 
-    // Animated Counters
-    function animateCounters() {
-        $(".counter").each(function() {
-            const $this = $(this);
-            const target = parseInt($this.attr("data-target"));
-            $({ count: 0 }).animate(
-                { count: target },
-                {
-                    duration: 2000,
-                    easing: "swing",
-                    step: function() {
-                        $this.text(Math.ceil(this.count));
-                    }
-                }
-            );
-        });
-    }
+    // Newsletter Form Handling
+    $("#newsletter-form").on("submit", function(e) {
+        e.preventDefault();
+        const email = $("#newsletter-email").val().trim();
 
-    // Trigger counters when stats section is in view
-    const statsSection = $(".stats");
-    let countersAnimated = false;
-    $(window).on("scroll", function() {
-        if (!countersAnimated && statsSection.is(":in-viewport")) {
-            animateCounters();
-            countersAnimated = true;
+        if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+            M.toast({ html: 'Enter a valid email.', classes: 'red' });
+            return;
         }
+
+        M.toast({ html: 'Subscribed successfully!', classes: 'green' });
+        $("#newsletter-form")[0].reset();
+        M.updateTextFields();
     });
 
-    // Fade-In Animation for Sections
-    $(".section").each(function() {
+    // Stats Counter Animation
+    $('.counter').each(function() {
+        const $this = $(this);
+        const target = parseInt($this.attr('data-target'));
+        $({ count: 0 }).animate(
+            { count: target },
+            {
+                duration: 2000,
+                easing: 'swing',
+                step: function() {
+                    $this.text(Math.ceil(this.count));
+                }
+            }
+        );
+    });
+
+    // Section Fade-In Animation
+    $('.section').each(function() {
         const $section = $(this);
-        $section.css("opacity", 0);
-        if ($section.is(":in-viewport")) {
+        $section.css('opacity', 0);
+        if ($section.isInViewport()) {
             $section.animate({ opacity: 1 }, 1000);
         }
     });
-    $(window).on("scroll", function() {
-        $(".section").each(function() {
+
+    // Scroll Animations and Progress Bar
+    $(window).on('scroll', function() {
+        $('.section').each(function() {
             const $section = $(this);
-            if ($section.is(":in-viewport") && $section.css("opacity") == 0) {
+            if ($section.isInViewport() && $section.css('opacity') == 0) {
                 $section.animate({ opacity: 1 }, 1000);
             }
         });
-    });
-
-    // Scroll Progress Bar
-    $(window).on("scroll", function() {
         const scrollTop = $(window).scrollTop();
         const docHeight = $(document).height() - $(window).height();
         const progress = (scrollTop / docHeight) * 100;
-        $("#progress-bar").css("width", progress + "%");
+        $('#progress-bar').css('width', progress + '%');
+
+        // Show/Hide Back to Top Button
+        if (scrollTop > 300) {
+            $('.back-to-top').fadeIn();
+        } else {
+            $('.back-to-top').fadeOut();
+        }
     });
 
     // Card Hover Animation
-    $(".card").hover(
+    $('.card').hover(
         function() {
-            $(this).animate({ marginTop: "-10px", opacity: 0.95 }, 200);
+            $(this).animate({ marginTop: '-10px' }, 200, 'swing');
         },
         function() {
-            $(this).animate({ marginTop: "0", opacity: 1 }, 200);
+            $(this).animate({ marginTop: '0' }, 200, 'swing');
         }
     );
+
+    // Video Placeholder Click
+    $('.video-placeholder').click(function() {
+        const modal = M.Modal.getInstance(document.getElementById('video-modal'));
+        modal.open();
+    });
+
+    // Back to Top Button
+    $('.back-to-top').click(function() {
+        $('html, body').animate({ scrollTop: 0 }, 600);
+    });
+
+    // Lazy Load Images
+    $('img[loading="lazy"]').each(function() {
+        if ($(this).isInViewport()) {
+            $(this).attr('src', $(this).attr('src'));
+        }
+    });
+
+    // Keyboard Accessibility
+    $('.video-placeholder, .card, .btn, .back-to-top').on('keypress', function(e) {
+        if (e.which === 13) { // Enter key
+            $(this).click();
+        }
+    });
 });
 
-// jQuery In-Viewport Plugin
+// Custom jQuery Plugin for Viewport Detection
 (function($) {
     $.fn.isInViewport = function() {
         const elementTop = $(this).offset().top;

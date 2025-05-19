@@ -1,66 +1,26 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sustainability - ExploreEase</title>
-    <!-- Materialize CSS CDN -->
+    <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/main.css">
     <!-- Sustainability CSS -->
     <link rel="stylesheet" href="css/sustainability.css">
-    <!-- jQuery CDN -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- jQuery UI for Accordion -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <!-- Materialize JS CDN -->
+    <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- Embedded CSS for Page-Specific Styles -->
+    <!-- Embedded CSS -->
     <style>
         /* Hero Section */
         .hero {
-            position: relative;
-            height: 500px;
+            height: 600px;
             background: url('images/sustainability-bg.jpg') no-repeat center center/cover;
             background-color: rgba(0, 0, 0, 0.5);
             background-blend-mode: darken;
@@ -69,6 +29,7 @@
             justify-content: center;
             text-align: center;
             color: orange;
+            position: relative;
         }
         .hero h1 {
             font-size: 48px;
@@ -77,35 +38,80 @@
             text-decoration-color: #003366;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        /* Section Styling */
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            color: #fff68f;
+        }
+        .hero .btn {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        /* Video Placeholder */
+        .video-placeholder {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            background: url('images/video-placeholder.jpg') no-repeat center center/cover;
+            margin: 20px auto;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .video-placeholder:hover {
+            transform: scale(1.02);
+        }
+        .video-placeholder i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        /* Sections */
         .section {
             padding: 60px 0;
-            background-color: #fff;
+            background: linear-gradient(180deg, #ffffff, #f8f8f8);
         }
         .section h2 {
             font-size: 36px;
             color: #003366;
-            margin-bottom: 30px;
             text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
         }
-        /* Goals Section */
+        /* Goals Cards */
         .goals .card {
-            border-radius: 10px;
-            overflow: hidden;
+            border-radius: 12px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            position: relative;
         }
-        /* Accordion Section */
-        .accordion-section {
-            background-color: #f8f8f8;
+        .goals .card-image img {
+            height: 200px;
+            object-fit: cover;
+            filter: brightness(90%);
         }
-        /* Form Section */
-        .form-section {
-            background-color: #fff;
+        .goals .card .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: orange;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
         }
         /* Stats Section */
         .stats {
             background: url('images/stats-bg.jpg') no-repeat center center/cover;
+            background-color: rgba(0, 0, 0, 0.5);
+            background-blend-mode: darken;
+            background-attachment: fixed;
             color: white;
             padding: 80px 0;
             text-align: center;
@@ -114,14 +120,74 @@
             font-size: 48px;
             font-weight: bold;
             color: orange;
+            margin-bottom: 10px;
+        }
+        .stats i {
+            font-size: 40px;
+            color: #fff68f;
+            margin-bottom: 10px;
+        }
+        /* Accordion Section */
+        .accordion-section {
+            background-color: #f8f8f8;
+        }
+        /* Testimonials Section */
+        .testimonials {
+            background: linear-gradient(180deg, #f8f8f8, #ffffff);
+        }
+        .testimonial-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 20px 0;
+        }
+        .testimonial-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+        .testimonial-slider::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 10px;
+        }
+        .testimonial {
+            flex: 0 0 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            scroll-snap-align: start;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #003366;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        .back-to-top:hover {
+            background-color: orange;
         }
         /* Responsive Design */
         @media screen and (max-width: 992px) {
+            .hero {
+                height: 500px;
+            }
             .hero h1 {
                 font-size: 36px;
             }
-            .section h2 {
-                font-size: 28px;
+            .video-placeholder {
+                width: 80%;
+                height: 200px;
+            }
+            .stats .counter {
+                font-size: 40px;
             }
         }
         @media screen and (max-width: 600px) {
@@ -131,18 +197,27 @@
             .hero h1 {
                 font-size: 28px;
             }
+            .hero p {
+                font-size: 16px;
+            }
             .section {
                 padding: 40px 0;
             }
+            .section h2 {
+                font-size: 28px;
+            }
             .stats .counter {
                 font-size: 36px;
+            }
+            .video-placeholder {
+                height: 150px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <div class="navbar">
+    <div class="navbar" style="position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
         <div class="logo">ExploreEase</div>
         <ul class="navbuttons">
             <li><a href="index.html">Home</a></li>
@@ -156,56 +231,64 @@
 
     <!-- Hero Section -->
     <div class="hero" style="background-color: #003366;">
-        <h1>Travel Sustainably with ExploreEase</h1>
+        <div class="container">
+            <h1>Sustainability at ExploreEase</h1>
+            <p>Travel responsibly with our commitment to eco-friendly adventures and community support.</p>
+            <div class="video-placeholder" data-tooltip="Watch our sustainability story">
+                <i class="fas fa-play-circle"></i>
+            </div>
+            <a href="#form-section" class="btn waves-effect waves-light" style="background-color: orange;">Join Us</a>
+        </div>
     </div>
 
     <!-- Introduction Section -->
-    <div class="section">
+    <div class="section" id="intro-section">
         <div class="container">
-            <h2>Our Vision for Sustainable Travel</h2>
-            <p style="font-size: 18px; color: #333; text-align: center; line-height: 1.6;">
-                At ExploreEase, we are committed to preserving the planet’s beauty for future generations. Our sustainability efforts focus on eco-friendly travel, community empowerment, and environmental stewardship.
+            <h2>Our Sustainable Journey</h2>
+            <p style="font-size: 18px; text-align: center; color: #333; line-height: 1.6;">
+                ExploreEase is dedicated to sustainable travel, minimizing environmental impact while enriching local communities.
             </p>
         </div>
     </div>
 
-    <!-- Sustainability Goals (Cards) -->
-    <div class="section goals">
+    <!-- Goals Section -->
+    <div class="section goals" id="goals-section">
         <div class="container">
-            <h2>Our Goals</h2>
+            <h2>Our Commitments</h2>
             <div class="row">
                 <div class="col s12 m4">
-                    <div class="card">
+                    <div class="card" data-tooltip="Carbon-neutral travel">
                         <div class="card-image">
-                            <img src="images/sustainability-goal1.jpg" alt="Eco-Friendly Tours" style="height: 150px; object-fit: cover;">
-                            <span class="card-title" style="color: #003366; text-shadow: 1px 1px 2px #fff;">Eco-Friendly Tours</span>
+                            <img src="images/sustainability-goal1.jpg" alt="Eco-Friendly Tours" loading="lazy">
+                            <span class="card-title" style="color: #003366;">Eco-Friendly Tours</span>
+                            <span class="badge">Green</span>
                         </div>
                         <div class="card-content">
-                            <p>Offering carbon-neutral tours with sustainable transport and green accommodations.</p>
+                            <p>Carbon-neutral tours with sustainable transport and green accommodations.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m4">
-                    <div class="card">
+                    <div class="card" data-tooltip="Empowering locals">
                         <div class="card-image">
-                            <img src="images/sustainability-goal2.jpg" alt="Community Support" style="height: 150px; object-fit:
-
- cover;">
-                            <span class="card-title" style="color: #003366; text-shadow: 1px 1px 2px #fff;">Community Support</span>
+                            <img src="images/sustainability-goal2.jpg" alt="Community Support" loading="lazy">
+                            <span class="card-title" style="color: #003366;">Community Support</span>
+                            <span class="badge">Social</span>
                         </div>
                         <div class="card-content">
-                            <p>Empowering local communities through fair trade and cultural preservation initiatives.</p>
+                            <p>Empowering local communities through fair trade and cultural initiatives.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m4">
-                    <div class="card">
+                    <div class="card" data-tooltip="Zero-waste goal">
                         <div class="card-image">
-                            <img src="images/sustainability-goal3.jpg" alt="Waste Reduction" style="height: 150px; object-fit: cover;">
-                            <span class="card-title" style="color: #003366; text-shadow: 1px 1px 2px #fff;">Waste Reduction</span>
+                            <img src="images/sustainability-goal3.jpg" alt="Waste Reduction" loading="lazy">
+                            <span class="card-title" style="color: #003366;">Waste Reduction</span>
+                            <span class="badge">Eco</span>
                         </div>
                         <div class="card-content">
-                            <p>Implementing zero-waste policies and recycling programs across all tours.</p>
+                            <p>Zero-waste policies and recycling programs across all our tours.</p>
                         </div>
                     </div>
                 </div>
@@ -213,73 +296,121 @@
         </div>
     </div>
 
-    <!-- Statistics Section (Animated Counters) -->
-    <div class="section stats">
+    <!-- Stats Section -->
+    <div class="section stats" id="stats-section">
         <div class="container">
             <h2>Our Impact</h2>
             <div class="row">
                 <div class="col s12 m4">
-                    <div class="counter" data-target="5000">0</div>
+                    <i class="fas fa-leaf"></i>
+                    <div class="counter" data-target="6000">0</div>
                     <p>Tons of CO2 Offset</p>
                 </div>
                 <div class="col s12 m4">
-                    <div class="counter" data-target="1000">0</div>
+                    <i class="fas fa-users"></i>
+                    <div class="counter" data-target="1200">0</div>
                     <p>Communities Supported</p>
                 </div>
                 <div class="col s12 m4">
-                    <div class="counter" data-target="25000">0</div>
+                    <i class="fas fa-globe"></i>
+                    <div class="counter" data-target="30000">0</div>
                     <p>Eco-Tours Conducted</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Initiatives (Accordion) -->
-    <div class="section accordion-section">
+    <!-- Initiatives Section -->
+    <div class="section accordion-section" id="initiatives-section">
         <div class="container">
             <h2>Our Initiatives</h2>
-            <div id="sustainability-accordion">
-                <h3>Green Travel Programs</h3>
-                <div>
-                    <p>Promoting eco-friendly options like electric buses, bike tours, and low-impact itineraries.</p>
+            <ul class="collapsible" role="tablist">
+                <li>
+                    <div class="collapsible-header" role="tab" aria-expanded="false">
+                        <i class="fas fa-bicycle"></i>Eco-Friendly Transportation
+                    </div>
+                    <div class="collapsible-body" role="tabpanel">
+                        <p>Using electric vehicles and bike tours to reduce emissions.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header" role="tab" aria-expanded="false">
+                        <i class="fas fa-tree"></i>Conservation Efforts
+                    </div>
+                    <div class="collapsible-body" role="tabpanel">
+                        <p>Partnering with global organizations to protect natural habitats.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header" role="tab" aria-expanded="false">
+                        <i class="fas fa-handshake"></i>Sustainable Partnerships
+                    </div>
+                    <div class="collapsible-body" role="tabpanel">
+                        <p>Collaborating with eco-conscious hotels and vendors.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="section testimonials" id="testimonials-section">
+        <div class="container">
+            <h2>What Travelers Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>"ExploreEase’s eco-tours are amazing! I felt good knowing my trip helped the planet."</p>
+                    <span>- Sarah Johnson</span>
                 </div>
-                <h3>Conservation Partnerships</h3>
-                <div>
-                    <p>Collaborating with global organizations to protect natural habitats and biodiversity.</p>
+                <div class="testimonial">
+                    <p>"The community support initiatives made my travel experience so meaningful."</p>
+                    <span>- Michael Lee</span>
                 </div>
-                <h3>Sustainable Partnerships</h3>
-                <div>
-                    <p>Working with hotels and vendors that prioritize sustainability and ethical practices.</p>
+                <div class="testimonial">
+                    <p>"Their commitment to sustainability is inspiring. Highly recommend!"</p>
+                    <span>- Emma Davis</span>
+                </div>
+                <div class="testimonial">
+                    <p>"I loved how every tour was eco-conscious, from transport to lodging!"</p>
+                    <span>- James Patel</span>
+                </div>
+                <div class="testimonial">
+                    <p>"Traveling with ExploreEase showed me how tourism can uplift local cultures."</p>
+                    <span>- Aisha Khan</span>
+                </div>
+                <div class="testimonial">
+                    <p>"The zero-waste approach made my trip guilt-free and unforgettable."</p>
+                    <span>- Lucas Silva</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Contact Form -->
-    <div class="section form-section">
+    <!-- Form Section -->
+    <div class="section form-section" id="form-section">
         <div class="container">
-            <h2>Join Our Sustainability Mission</h2>
-            <form id="sustainability-form">
+            <h2>Join Our Mission</h2>
+            <form id="sustainability-form" aria-label="Sustainability Contact Form">
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <input id="name" type="text" class="validate" required pattern="[A-Za-z\s]{2,}">
+                        <input id="name" type="text" class="validate" required pattern="[A-Za-z\s]{2,}" aria-required="true">
                         <label for="name">Your Name</label>
-                        <span class="helper-text" data-error="Please enter a valid name"></span>
+                        <span class="helper-text" data-error="Enter a valid name"></span>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="email" type="email" class="validate" required>
+                        <input id="email" type="email" class="validate" required aria-required="true">
                         <label for="email">Your Email</label>
-                        <span class="helper-text" data-error="Please enter a valid email"></span>
+                        <span class="helper-text" data-error="Enter a valid email"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="message" class="materialize-textarea" required minlength="10"></textarea>
+                        <textarea id="message" class="materialize-textarea" required minlength="10" aria-required="true"></textarea>
                         <label for="message">Your Message</label>
-                        <span class="helper-text" data-error="Message must be at least 10 characters"></span>
+                        <span class="helper-text" data-error="Minimum 10 characters"></span>
                     </div>
                 </div>
-                <button class="btn waves-effect waves-light" type="submit" style="background-color: orange; margin-top: 20px;">
+                <button class="btn waves-effect waves-light" type="submit" style="background-color: orange;">
                     Submit <i class="fas fa-paper-plane right"></i>
                 </button>
             </form>
@@ -287,17 +418,52 @@
         </div>
     </div>
 
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <h4>Our Sustainability Story</h4>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('images/video-placeholder.jpg') no-repeat center center/cover;">
+                    <p style="color: white; text-align: center; padding-top: 20%;">Video feature coming soon!</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close btn-flat">Close</a>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
-        <p>© 2025 ExploreEase | All Rights Reserved</p>
-        <div class="socials">
-            <i class="fab fa-facebook-f icon"></i>
-            <i class="fab fa-twitter icon"></i>
-            <i class="fab fa-instagram icon"></i>
+        <div class="container">
+            <p>© 2025 ExploreEase | All Rights Reserved</p>
+            <div class="socials">
+                <i class="fab fa-facebook-f icon" data-tooltip="Follow us on Facebook"></i>
+                <i class="fab fa-twitter icon" data-tooltip="Follow us on Twitter"></i>
+                <i class="fab fa-instagram icon" data-tooltip="Follow us on Instagram"></i>
+            </div>
+            <form id="newsletter-form" aria-label="Newsletter Subscription">
+                <div class="input-field">
+                    <input id="newsletter-email" type="email" class="validate" required aria-required="true">
+                    <label for="newsletter-email">Subscribe to our Newsletter</label>
+                    <span class="helper-text" data-error="Enter a valid email"></span>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" style="background-color: orange; margin-top: 10px;">
+                    Subscribe <i class="fas fa-envelope right"></i>
+                </button>
+            </form>
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Back to Top Button -->
+    <div class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar" style="height: 4px; background-color: orange;"></div>
+
+    <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/sustainability.js"></script>
 </body>
