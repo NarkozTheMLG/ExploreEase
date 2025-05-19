@@ -7,7 +7,7 @@ const getTable = $("table");
 const getBackButton = $("#back");
 
 const gameOverImg = new Image();
-gameOverImg.src = "../images/game_over.svg";
+gameOverImg.src = "images/game_over.svg";
 const newGameOver = new GameOver(
   canvas.width / 2,
   canvas.height / 2,
@@ -17,29 +17,29 @@ const newGameOver = new GameOver(
 );
 
 const beachBall = new Image();
-beachBall.src = "../images/beach_ball.png";
+beachBall.src = "images/beach_ball.png";
 
 const backGround = new Image();
-backGround.src = "../images/beach_background.jpg";
+backGround.src = "images/beach_background.jpg";
 
 const pausedImg = new Image();
-pausedImg.src = "../images/paused.svg";
+pausedImg.src = "images/paused.svg";
 
 const chestImg = new Image();
-chestImg.src = "../images/chest_1.png";
+chestImg.src = "images/chest_1.png";
 const newChest = new Chest(0, canvas.height, 0, 190, 150, chestImg);
 
 const boomEffect = new Image();
-boomEffect.src = "../images/boom_effect.png";
+boomEffect.src = "images/boom_effect.png";
 
 const scoreBoard = new Image();
-scoreBoard.src = "../images/score.svg";
+scoreBoard.src = "images/score.svg";
 
 const timebarimg1 = new Image();
-timebarimg1.src = "../images/menu_design1.svg";
+timebarimg1.src = "images/menu_design1.svg";
 
 const backbutton = new Image();
-backbutton.src = "../images/backbutton.svg";
+backbutton.src = "images/backbutton.svg";
 
 const gravity = 8;
 export let gameFinished = false;
@@ -147,7 +147,7 @@ function drawScene() {
 }
 function spawnBeachBall() {
   const itemImg = new Image();
-  itemImg.src = "../images/beach_ball.png";
+  itemImg.src = "images/beach_ball.png";
   const random = Math.floor(Math.random() * (10 - 3)) + 4;
   let size = random * 10;
   let velocity = random;
