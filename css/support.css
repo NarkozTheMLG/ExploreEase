@@ -1,5 +1,5 @@
 
-body {
+body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #f6f5f3;
 }
@@ -8,7 +8,7 @@ body {
     margin-top: 0px; 
 }
 
-.navbar-fixed {
+.navbar-fixed{
     background: #003366;
     color: white;
     padding: 15px 100px;
@@ -20,52 +20,55 @@ body {
     justify-content: space-between;
     position: fixed;
     
-  }
+}
   
-  .navbar-fixed .logo {
+.navbar-fixed .logo{
     font-size: 24px;
     font-weight: bold;
-  }
+}
   
-  .navbar-fixed .navbuttons {
+.navbar-fixed .navbuttons{
     display: flex;
     gap: 20px;
     
-  }
+}
   
-  .navbar-fixed .navbuttons li a {
+.navbar-fixed .navbuttons li a{
     color: white;
     text-decoration: none;
-  }
+}
 
-  .navbar .navbuttons li a:hover {
+.navbar-fixed .navbuttons li a:hover{
     color: red;
-  }
+}
 
-  .navbar .navbuttons li a:active {
+.navbar-fixed .navbuttons li a:active{
     color: yellow;
-  }
+}
   
 
-.faq {
+.faq{
     margin-top: 40px;
     margin-bottom: 40px;
     
 }
   
-.faq .collection-item {
+.faq .collection-item{
     font-size: 16px;
     color: #333;
 }
+
+.form{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/contactBG.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 30px;
+    border-radius: 10px;
+  }
   
- 
-.form-section {
-    margin-bottom: 50px;
-    
-}
-  
-.form-section .input-field input,
-.form-section .input-field textarea {
+.form .input-field input,
+.form .input-field textarea{
     background-color: #f6f5f3;
     border-radius: 4px;
     padding-left: 10px;
@@ -73,16 +76,21 @@ body {
   
 button[type="submit"] {
     font-weight: bold;
+    color: yellow;
 }
   
-footer {
+footer{
     background: #003366;
     color: white;
     text-align: center;
     padding: 10px;
-  }
+}
   
-  .socials i {
+.socials i{
     margin: 0 10px;
     cursor: grab;
-  }
+}
+
+.collapsible-body{
+    font-style: italic;
+}
