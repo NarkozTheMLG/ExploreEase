@@ -3,3 +3,9 @@ $(document).ready(function() {
       alert("Search feature coming soon!");
     });
   });
+
+$(document).ready(function() {
+    $(".socials .icon").click(function() {
+      alert("Social media coming soon!");
+    });
+});

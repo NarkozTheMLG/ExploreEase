@@ -4,47 +4,56 @@ body {
     background-color: #f6f5f3;
 }
 
-.hero-section {
+.middle{
     margin-top: 0px; 
 }
 
-nav{
-    height: 100px; 
-    line-height: 100px; 
-    background-color: #003366; 
-    color: #f6f5f3;
-}
-  
-nav .brand-logo img{
-    height: 250px; 
-    width: 300px;
-    
-}
-  
-nav .nav-wrapper{
+.navbar-fixed {
+    background: #003366;
+    color: white;
+    padding: 15px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    height: 100%; 
-    background-color: #003366; 
-}
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    
+  }
   
-
-nav ul li a {
-    color: white; 
+  .navbar-fixed .logo {
+    font-size: 24px;
     font-weight: bold;
-}
+  }
   
-nav ul li a:hover {
-    color: red; 
-}
+  .navbar-fixed .navbuttons {
+    display: flex;
+    gap: 20px;
+    
+  }
+  
+  .navbar-fixed .navbuttons li a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .navbar .navbuttons li a:hover {
+    color: red;
+  }
+
+  .navbar .navbuttons li a:active {
+    color: yellow;
+  }
   
 
-.faq-section {
+.faq {
     margin-top: 40px;
     margin-bottom: 40px;
     
 }
   
-.faq-section .collection-item {
+.faq .collection-item {
     font-size: 16px;
     color: #333;
 }
@@ -66,9 +75,14 @@ button[type="submit"] {
     font-weight: bold;
 }
   
-
-.page-footer {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 14px;
-}
+footer {
+    background: #003366;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .socials i {
+    margin: 0 10px;
+    cursor: grab;
+  }
