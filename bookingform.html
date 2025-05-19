@@ -7,18 +7,53 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             margin: 0;
             padding: 0;
+            margin-top: 0px;
         }
-        .header {
-            background-color: #f8f9fa;
-            padding: 10px;
-            text-align: center;
+        .navbar {
+            margin-bottom: 10px;
+            background: #003366;
+            color: white;
+            padding: 10px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .navbar .logo {
             font-size: 24px;
             font-weight: bold;
-            border-bottom: 1px solid #ddd;
         }
+        
+        .navbar .navbuttons {
+            display: flex;
+            gap: 20px;
+            
+        }
+        .tour-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1em;
+        }
+        .navbar .navbuttons li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar .navbuttons li a:hover {
+            color: red;
+        }
+
+        .navbar .navbuttons li a:active {
+            color: yellow;
+        }
+
         .container {
             display: flex;
             margin: 20px;
@@ -96,7 +131,18 @@
     </style>
 </head>
 <body>
-    <div class="header">ExploreEase</div>
+    <header>
+        <div class="navbar">
+          <div class="logo">ExploreEase</div>
+          <ul class="navbuttons">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="offices.html">Sales Offices</a></li>
+            <li><a href="bookingform.html">Booking Form</a></li>
+            <li><a href="game.html">Game</a></li>
+            <li><a href="support.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </header>
     <div class="container">
         <div class="form-section">
             <div class="form-group">
@@ -160,7 +206,7 @@
         </div>
         <div class="tour-details">
             <h2>Tour Details</h2>
-            <div class="tour-image-placeholder">Tour Image Placeholder</div>
+            <img src="images/tour.jpg" alt="" class="tour-image">
             <p><strong>Tour Name:</strong> European Adventure Tour</p>
             <p><strong>Check-In:</strong> 15 May 2025 14:00</p>
             <p><strong>Check-Out:</strong> 17 May 2025 12:00</p>
