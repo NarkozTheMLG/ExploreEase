@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tours - ExploreEase</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- Tours CSS -->
+    <link rel="stylesheet" href="css/tours.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Embedded CSS -->
+    <style>
+        /* Hero Section */
+        .hero {
+            height: 600px;
+            background: url('images/tours-bg.jpg') no-repeat center center/cover;
+            background-color: rgba(0, 0, 0, 0.5);
+            background-blend-mode: darken;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: orange;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+            text-decoration: underline;
+            text-decoration-color: #003366;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            color: #fff68f;
+        }
+        .hero .btn {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        /* Sections */
+        .section {
+            padding: 60px 0;
+            background: linear-gradient(180deg, #ffffff, #f8f8f8);
+        }
+        .section h2 {
+            font-size: 36px;
+            color: #003366;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        /* Filter Section */
+        .filter-section {
+            background-color: #f8f8f8;
+        }
+        /* Tours Section */
+        .tours .card {
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            position: relative;
+        }
+        .tours .card-image img {
+            height: 200px;
+            object-fit: cover;
+            filter: brightness(90%);
+        }
+        .tours .card .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: orange;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        /* Stats Section */
+        .stats {
+            background: url('images/stats-bg.jpg') no-repeat center center/cover;
+            background-color: rgba(0, 0, 0, 0.5);
+            background-blend-mode: darken;
+            background-attachment: fixed;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .stats .counter {
+            font-size: 48px;
+            font-weight: bold;
+            color: orange;
+            margin-bottom: 10px;
+        }
+        .stats i {
+            font-size: 40px;
+            color: #fff68f;
+            margin-bottom: 10px;
+        }
+        /* Testimonials Section */
+        .testimonials {
+            background: linear-gradient(180deg, #f8f8f8, #ffffff);
+        }
+        .testimonial-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 20px 0;
+        }
+        .testimonial-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+        .testimonial-slider::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 10px;
+        }
+        .testimonial {
+            flex: 0 0 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            scroll-snap-align: start;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        /* Booking Form Section */
+        .booking-form-section {
+            background-color: #f8f8f8;
+        }
+        .calendar-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #003366;
+            cursor: pointer;
+        }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #003366;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        .back-to-top:hover {
+            background-color: orange;
+        }
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .hero {
+                height: 500px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .stats .counter {
+                font-size: 40px;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .hero {
+                height: 400px;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .section {
+                padding: 40px 0;
+            }
+            .section h2 {
+                font-size: 28px;
+            }
+            .stats .counter {
+                font-size: 36px;
+            }
+            .testimonial {
+                flex: 0 0 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar" style="position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <div class="logo">ExploreEase</div>
+        <ul class="navbuttons">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="offices.html">Sales Offices</a></li>
+            <li><a href="bookingform.html">Booking Form</a></li>
+            <li><a href="game.html">Game</a></li>
+            <li><a href="support.html">Contact Us</a></li>
+            <li><a href="sustainability.html">Sustainability</a></li>
+            <li><a href="tours.html">Tours</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero" style="background-color: #003366;">
+        <div class="container">
+            <h1>Discover Visa-Free Adventures</h1>
+            <p>Explore the world with ease on our curated visa-free tours, from Balkans to exotic Asia.</p>
+            <a href="#booking-form-section" class="btn waves-effect waves-light" style="background-color: orange;">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="section filter-section" id="filter-section">
+        <div class="container">
+            <h2>Find Your Perfect Tour</h2>
+            <ul class="collapsible" role="tablist">
+                <li>
+                    <div class="collapsible-header" role="tab" aria-expanded="false">
+                        <i class="fas fa-filter"></i>Filter Tours
+                    </div>
+                    <div class="collapsible-body" role="tabpanel">
+                        <div class="row">
+                            <div class="input-field col s12 m4">
+                                <select id="region-filter">
+                                    <option value="all">All Regions</option>
+                                    <option value="balkans">Balkans</option>
+                                    <option value="asia">Asia</option>
+                                    <option value="africa">Africa</option>
+                                </select>
+                                <label>Region</label>
+                            </div>
+                            <div class="input-field col s12 m4">
+                                <select id="duration-filter">
+                                    <option value="all">All Durations</option>
+                                    <option value="2">2 Nights</option>
+                                    <option value="3">3 Nights</option>
+                                    <option value="4">4 Nights</option>
+                                    <option value="6">6 Nights</option>
+                                </select>
+                                <label>Duration</label>
+                            </div>
+                            <div class="input-field col s12 m4">
+                                <select id="price-filter">
+                                    <option value="all">All Prices</option>
+                                    <option value="0-500">$0 - $500</option>
+                                    <option value="500-1000">$500 - $1000</option>
+                                    <option value="1000+">$1000+</option>
+                                </select>
+                                <label>Price Range</label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Tours Section -->
+    <div class="section tours" id="tours-section">
+        <div class="container">
+            <h2>Our Visa-Free Tours</h2>
+            <div class="row" id="tour-list">
+                <div class="col s12 m4 tour-card" data-region="balkans" data-duration="4" data-price="500">
+                    <div class="card" data-tooltip="Explore the Balkans">
+                        <div class="card-image">
+                            <img src="images/balkans-tour.jpg" alt="Balkan Adventure" loading="lazy">
+                            <span class="card-title" style="color: #003366;">Balkan Adventure</span>
+                            <span class="badge">4 Nights</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Visit Sarajevo, Mostar, and Belgrade. Price: $500</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#booking-form-section" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4 tour-card" data-region="asia" data-duration="6" data-price="1200">
+                    <div class="card" data-tooltip="Discover Thailand">
+                        <div class="card-image">
+                            <img src="images/thailand-tour.jpg" alt="Thailand Escape" loading="lazy">
+                            <span class="card-title" style="color: #003366;">Thailand Escape</span>
+                            <span class="badge">6 Nights</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Explore Bangkok and Phuket. Price: $1200</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#booking-form-section" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4 tour-card" data-region="africa" data-duration="3" data-price="400">
+                    <div class="card" data-tooltip="Experience Morocco">
+                        <div class="card-image">
+                            <img src="images/morocco-tour.jpg" alt="Morocco Highlights" loading="lazy">
+                            <span class="card-title" style="color: #003366;">Morocco Highlights</span>
+                            <span class="badge">3 Nights</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Discover Marrakech and Casablanca. Price: $400</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#booking-form-section" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4 tour-card" data-region="asia" data-duration="4" data-price="800">
+                    <div class="card" data-tooltip="Relax in Maldives">
+                        <div class="card-image">
+                            <img src="images/maldives-tour.jpg" alt="Maldives Getaway" loading="lazy">
+                            <span class="card-title" style="color: #003366;">Maldives Getaway</span>
+                            <span class="badge">4 Nights</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Enjoy pristine beaches and luxury resorts. Price: $800</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#booking-form-section" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="section stats" id="stats-section">
+        <div class="container">
+            <h2>Our Travel Impact</h2>
+            <div class="row">
+                <div class="col s12 m4">
+                    <i class="fas fa-globe"></i>
+                    <div class="counter" data-target="5000">0</div>
+                    <p>Tours Conducted</p>
+                </div>
+                <div class="col s12 m4">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <div class="counter" data-target="30">0</div>
+                    <p>Countries Visited</p>
+                </div>
+                <div class="col s12 m4">
+                    <i class="fas fa-users"></i>
+                    <div class="counter" data-target="10000">0</div>
+                    <p>Happy Travelers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Form Section -->
+    <div class="section booking-form-section" id="booking-form-section">
+        <div class="container">
+            <h2>Book Your Adventure</h2>
+            <form id="booking-form" aria-label="Tour Booking Form">
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="name" type="text" class="validate" required pattern="[A-Za-z\s]{2,}" aria-required="true">
+                        <label for="name">Your Name</label>
+                        <span class="helper-text" data-error="Enter a valid name"></span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="email" type="email" class="validate" required aria-required="true">
+                        <label for="email">Your Email</label>
+                        <span class="helper-text" data-error="Enter a valid email"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <select id="tour-select" required aria-required="true">
+                            <option value="" disabled selected>Choose a tour</option>
+                            <option value="balkan">Balkan Adventure</option>
+                            <option value="thailand">Thailand Escape</option>
+                            <option value="morocco">Morocco Highlights</option>
+                            <option value="maldives">Maldives Getaway</option>
+                        </select>
+                        <label>Tour</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="datepicker" type="text" class="validate" required aria-required="true" readonly>
+                        <label for="datepicker">Travel Date</label>
+                        <i class="fas fa-calendar-alt calendar-icon"></i>
+                        <span class="helper-text" data-error="Select a valid date"></span>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" style="background-color: orange;">
+                    Submit <i class="fas fa-paper-plane right"></i>
+                </button>
+            </form>
+            <p id="form-message" style="color: #003366; margin-top: 20px; font-size: 16px;"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 ExploreEase | All Rights Reserved</p>
+            <div class="socials">
+                <i class="fab fa-facebook-f icon" data-tooltip="Follow us on Facebook"></i>
+                <i class="fab fa-twitter icon" data-tooltip="Follow us on Twitter"></i>
+                <i class="fab fa-instagram icon" data-tooltip="Follow us on Instagram"></i>
+            </div>
+            <form id="newsletter-form" aria-label="Newsletter Subscription">
+                <div class="input-field">
+                    <input id="newsletter-email" type="email" class="validate" required aria-required="true">
+                    <label for="newsletter-email">Subscribe to our Newsletter</label>
+                    <span class="helper-text" data-error="Enter a valid email"></span>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" style="background-color: orange; margin-top: 10px;">
+                    Subscribe <i class="fas fa-envelope right"></i>
+                </button>
+            </form>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar" style="height: 4px; background-color: orange;"></div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/tours.js"></script>
+</body>
+</html>
