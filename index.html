@@ -1,120 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ExploreEase</title>
 
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="js/main.js">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="js/main.js" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    
-</head>
-<body>
-<!-- navigation bar on top -->
-  <header>
-    <div class="navbar">
-      <div class="logo">ExploreEase</div>
-      <ul class="navbuttons">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="offices.html">Sales Offices</a></li>
-        <li><a href="bookingform.html">Booking Form</a></li>
-        <li><a href="game.html">Game</a></li>
-        <li><a href="support.html">Contact Us</a></li>
-        <li><a href="sustainability.html">Sustainability</a></li>
-        <li><a href="tours.html">Tours</a></li>
-      </ul>
-    </div>
-  </header>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- navigation bar on top -->
+    <header>
+      <div class="navbar">
+        <div class="logo">ExploreEase</div>
+        <ul class="navbuttons">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="offices.html">Sales Offices</a></li>
+          <li><a href="bookingform.html">Booking Form</a></li>
+          <li><a href="game.html">Game</a></li>
+          <li><a href="support.html">Contact Us</a></li>
+          <li><a href="sustainability.html">Sustainability</a></li>
+          <li><a href="tours.html">Tours</a></li>
+        </ul>
+      </div>
+    </header>
 
     <!-- searching destinations -->
-  <section class="middle">
-    <h1>Let us take you to your<br><span>Dream Destinations</span></h1>
-    <div class="search-bar">
-      <select>
-        <option>All Continents</option>
-        <option>Asia</option>
-        <option>Europe</option>
-        <option>Americas</option>
-        <option>Middle East</option>
-        <option>Africa</option>
-      </select>
-      <select>
-        <option>All Countries</option>
-        <option>Japan</option>
-        <option>Spain</option>
-        <option>Dubai</option>
-        <option>Italy</option>
-        <option>New York</option>
-        <option>Johannesburg</option>
-      </select>
-      <input type="number" placeholder="Your Budget ($)">
-      <button id="searchBtn">Find Your Tours</button>
-    </div>
-  </section>
+    <section class="middle">
+      <h1>Let us take you to your<br /><span>Dream Destinations</span></h1>
+      <div class="search-bar">
+        <select>
+          <option>All Continents</option>
+          <option>Asia</option>
+          <option>Europe</option>
+          <option>Americas</option>
+          <option>Middle East</option>
+          <option>Africa</option>
+        </select>
+        <select>
+          <option>All Countries</option>
+          <option>Japan</option>
+          <option>Spain</option>
+          <option>Dubai</option>
+          <option>Italy</option>
+          <option>New York</option>
+          <option>Johannesburg</option>
+        </select>
+        <input type="number" placeholder="Your Budget ($)" />
+        <button id="searchBtn">Find Your Tours</button>
+      </div>
+    </section>
 
-  <!-- popular destinations -->
-  <section class="offers">
-    <h2>POPULAR DESTINATIONS</h2>
-    <div class="cards">
-      <div class="card"><img src="images/uk.jpg"><p>United Kingdom - $5000</p></div>
-      <div class="card"><img src="images/spain.png"><p>Spain - $4000</p></div>
-      <div class="card"><img src="images/turkey.png"><p>Turkey - $2000</p></div>
-      <div class="card"><img src="images/italy.jpg"><p>Italy - $3000</p></div>
-      <div class="card"><img src="images/japan.jpg"><p>Japan - $4000</p></div>
-      <div class="card"><img src="images/india.jpg"><p>India - $4000</p></div>
-    </div>
-  </section>
+    <!-- popular destinations -->
+    <section class="offers">
+      <h2>POPULAR DESTINATIONS</h2>
+      <div class="cards">
+        <div class="card">
+          <img src="images/uk.jpg" />
+          <p>United Kingdom - $5000</p>
+        </div>
+        <div class="card">
+          <img src="images/spain.png" />
+          <p>Spain - $4000</p>
+        </div>
+        <div class="card">
+          <img src="images/turkey.png" />
+          <p>Turkey - $2000</p>
+        </div>
+        <div class="card">
+          <img src="images/italy.jpg" />
+          <p>Italy - $3000</p>
+        </div>
+        <div class="card">
+          <img src="images/japan.jpg" />
+          <p>Japan - $4000</p>
+        </div>
+        <div class="card">
+          <img src="images/india.jpg" />
+          <p>India - $4000</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- why to choose us -->
-  <section class="why">
-    <h2>WHY CHOOSE US?</h2>
-    <p class="subtitle">A BRAND NAME YOU CAN TRUST AND RELY ON</p>
-    <div class="features">
+    <!-- why to choose us -->
+    <section class="why">
+      <h2>WHY CHOOSE US?</h2>
+      <p class="subtitle">A BRAND NAME YOU CAN TRUST AND RELY ON</p>
+      <div class="features">
         <div class="feature">
-            <img src="images/price.png" alt="Affordable Price">
-            <h3>AFFORDABLE PRICE GUARANTEE</h3>
-            <p> Unbeatable prices without compromising comfort—travel smart, spend less. Get more adventure for your money with our best-price guarantee.</p>
+          <img src="images/price.png" alt="Affordable Price" />
+          <h3>AFFORDABLE PRICE GUARANTEE</h3>
+          <p>
+            Unbeatable prices without compromising comfort—travel smart, spend
+            less. Get more adventure for your money with our best-price
+            guarantee.
+          </p>
         </div>
         <div class="feature">
-            <img src="images/variety.png" alt="Wide Variety">
-            <h3>WIDE VARIETY OF DESTINATIONS</h3>
-            <p>From hidden gems to world-famous cities, we take you everywhere. Explore a world of options—hundreds of destinations, endless memories..</p>
+          <img src="images/variety.png" alt="Wide Variety" />
+          <h3>WIDE VARIETY OF DESTINATIONS</h3>
+          <p>
+            From hidden gems to world-famous cities, we take you everywhere.
+            Explore a world of options—hundreds of destinations, endless
+            memories..
+          </p>
         </div>
         <div class="feature">
-            <img src="images/quality.png" alt="Qualified Service">
-            <h3>HIGHLY QUALIFIED SERVICE</h3>
-            <p>ACarefully curated experiences backed by top-rated service providers.Premium travel experiences made easy—from booking to return.</p>
+          <img src="images/quality.png" alt="Qualified Service" />
+          <h3>HIGHLY QUALIFIED SERVICE</h3>
+          <p>
+            ACarefully curated experiences backed by top-rated service
+            providers.Premium travel experiences made easy—from booking to
+            return.
+          </p>
         </div>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- reviews -->
-  <section class="review">
-    <h2>CUSTOMER REVIEWS</h2>
-    <div class="reviewScroll">
-      <div class="quote"><p>“I've booked three trips with them so far—each to a totally different part of the world. The variety is amazing!”</p><span>- John Smith</span></div>
-      <div class="quote"><p>“Great customer service! They helped us find a honeymoon package that was both romantic and reasonably priced.”</p><span>- Susan Hill</span></div>
-      <div class="quote"><p>““I love how they offer both popular destinations and off-the-beaten-path experiences. You really get to explore.”</p><span>- David Williams</span></div>
-      <div class="quote"><p>“I’ve used other agencies before, but none compare to the value and care we received here. Lifelong customer now!”</p><span>- Emily Johnson</span></div>
-      <div class="quote"><p>“This was hands down the best vacation I’ve ever had. The quality of the tours and guides was top-notch.”</p><span>- Emily Johnson</span></div>
-      <div class="quote"><p>“We were a big group with different preferences, but they customized our itinerary perfectly. Highly recommend!”</p><span>- Emily Johnson</span></div>
-      <div class="quote"><p>“The photos don’t do it justice—everything was even better in person. Thank you for such an unforgettable trip!”</p><span>- Chris Martin</span></div>
-    </div>
-  </section>
+    <!-- reviews -->
+    <section class="review">
+      <h2>CUSTOMER REVIEWS</h2>
+      <div class="reviewScroll">
+        <div class="quote">
+          <p>
+            “I've booked three trips with them so far—each to a totally
+            different part of the world. The variety is amazing!”
+          </p>
+          <span>- John Smith</span>
+        </div>
+        <div class="quote">
+          <p>
+            “Great customer service! They helped us find a honeymoon package
+            that was both romantic and reasonably priced.”
+          </p>
+          <span>- Susan Hill</span>
+        </div>
+        <div class="quote">
+          <p>
+            ““I love how they offer both popular destinations and
+            off-the-beaten-path experiences. You really get to explore.”
+          </p>
+          <span>- David Williams</span>
+        </div>
+        <div class="quote">
+          <p>
+            “I’ve used other agencies before, but none compare to the value and
+            care we received here. Lifelong customer now!”
+          </p>
+          <span>- Emily Johnson</span>
+        </div>
+        <div class="quote">
+          <p>
+            “This was hands down the best vacation I’ve ever had. The quality of
+            the tours and guides was top-notch.”
+          </p>
+          <span>- Emily Johnson</span>
+        </div>
+        <div class="quote">
+          <p>
+            “We were a big group with different preferences, but they customized
+            our itinerary perfectly. Highly recommend!”
+          </p>
+          <span>- Emily Johnson</span>
+        </div>
+        <div class="quote">
+          <p>
+            “The photos don’t do it justice—everything was even better in
+            person. Thank you for such an unforgettable trip!”
+          </p>
+          <span>- Chris Martin</span>
+        </div>
+      </div>
+    </section>
 
-  <!-- footer -->
-  <footer>
-    <p>© 2025 ExploreEase | All Rights Reserved</p> <br>
-    <div class="socials">
-      <i class="fab fa-facebook"></i> 
-      <i class="fab fa-instagram"></i>
-      <i class="fab fa-twitter"></i>
-      <i class="fab fa-tiktok"></i>
-    </div>
-  </footer>
+    <!-- footer -->
+    <footer>
+      <p>© 2025 ExploreEase | All Rights Reserved</p>
+      <br />
+      <div class="socials">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-tiktok"></i>
+      </div>
+    </footer>
 
-  <script src="js/main.js"></script>
-</body>
+    <script src="js/main.js"></script>
+  </body>
 </html>

@@ -1,146 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Support</title>
 
     <!-- materialize CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      rel="stylesheet"
+    />
     <!-- materialize javascript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="css/support.css">
-  <script src="js/support.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/support.css" />
+    <script src="js/support.js"></script>
 
-  <style>
+    <style>
+      .faq h5 {
+        font-weight: bold;
+      }
+      .form {
+        background-color: #f2f2f2;
+        padding: 30px;
+        border-radius: 10px;
+      }
 
-    .faq h5 {
-      font-weight: bold;
-    }
-    .form{
-      background-color: #f2f2f2;
-      padding: 30px;
-      border-radius: 10px;
-    }
-    
-    .middle {
-    background-image: url('images/supportBG.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
-    background-blend-mode: darken;
-    }
+      .middle {
+        background-image: url("images/supportBG.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        background-blend-mode: darken;
+      }
     </style>
-</head>
-<body>
-    
-<!-- navigation bar -->
-<div class="navbar-fixed">
-    <div class="logo">ExploreEase</div>
-    <ul class="navbuttons">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="offices.html">Sales Offices</a></li>
-      <li><a href="bookingform.html">Booking Form</a></li>
-      <li><a href="game.html">Game</a></li>
-      <li><a href="support.html">Contact Us</a></li>
-      <li><a href="sustainability.html">Sustainability</a></li>
-      <li><a href="tours.html">Tours</a></li>
-    </ul>
-</div>
-
-
-<!-- search question part -->
-  <section class="middle">
-    <h4 class="white-text">How can we help you?</h4>
-    <input
-      id="search"
-      type="text"
-      class="white browser-default"
-      placeholder="Search help topics..."
-      style="padding: 10px; border-radius: 5px; max-width: 600px; width: 80%; margin-top: 20px; border-style: dashed;">
-  </section>
-
-
-  <!-- frequently asked questions -->
-  <div class="faq">
-    <h5 class="center-align">Frequently Asked Questions</h5>
-    <ul class="collapsible">
-      <li>
-        <div class="collapsible-header"><i class="material-icons"><img src="images/down.png" style="width:16px; height:10px; margin-right:5px;">
-        </i>What makes your prices so affordable?</div>
-        <div class="collapsible-body"><span>We partner with trusted local providers and use smart booking tools to offer competitive prices without compromising quality.</span></div>
-      </li>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">
-        <img src="images/down.png" style="width:16px; height:10px; margin-right:5px;">
-        </i>How many destinations can I choose from?</div>
-        <div class="collapsible-body"><span>We currently offer over 150 destinations across 6 continents, with new locations added every season.</span></div>
-      </li>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">
-        <img src="images/down.png" style="width:16px; height:10px; margin-right:5px;">
-        </i>How do you ensure trip quality?</div>
-        <div class="collapsible-body"><span>We work only with top-rated hotels, guides, and transport services—plus, every trip is reviewed by real travelers.</span></div>
-      </li>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">
-        <img src="images/down.png" style="width:16px; height:10px; margin-right:5px;">
-        </i>Can I customize my travel itinerary?</div>
-        <div class="collapsible-body"><span>Absolutely! We offer fully customizable packages to suit your preferences, budget, and travel goals.</span></div>
-      </li>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">
-        <img src="images/down.png" style="width:16px; height:10px; margin-right:5px;">
-        </i>Is customer support available during my trip?</div>
-        <div class="collapsible-body"><span>Yes, our support team is available 24/7 to assist you during your journey—anytime, anywhere.</span></div>
-      </li>
-    </ul>
-  </div>
-
-  <!-- contact us form -->
-  <div class="form" style="display: flex; justify-content: center;">
-    <form id="supportForm" style="max-width: 500px; width: 100%;">
-      <h5 class="center-align" style="font-weight: 300; color: yellow">Contact Us</h5>
-  
-      <div class="input-field">
-        <input id="name" type="text" class="validate" required>
-        <label for="name">Your Name</label>
-      </div>
-  
-      <div class="input-field">
-        <input id="email" type="email" class="validate" required>
-        <label for="email">Email</label>
-      </div>
-  
-      <div class="input-field">
-        <textarea id="message" class="materialize-textarea" required></textarea>
-        <label for="message">Your Message</label>
-      </div>
-  
-      <button class="btn waves-effect waves-light teal" type="submit" name="action" style="margin-top: 10px;">Submit</button>
-    </form>
-  </div>
-
-  <!-- page footer -->
-  <footer>
-    <p>© 2025 ExploreEase | All Rights Reserved</p> 
-    <div class="socials">
-      <i class="fab fa-facebook"></i> 
-      <i class="fab fa-instagram"></i>
-      <i class="fab fa-twitter"></i>
-      <i class="fab fa-tiktok"></i>
+  </head>
+  <body>
+    <!-- navigation bar -->
+    <div class="navbar-fixed">
+      <div class="logo">ExploreEase</div>
+      <ul class="navbuttons">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="offices.html">Sales Offices</a></li>
+        <li><a href="bookingform.html">Booking Form</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="support.html">Contact Us</a></li>
+        <li><a href="sustainability.html">Sustainability</a></li>
+        <li><a href="tours.html">Tours</a></li>
+      </ul>
     </div>
-  </footer>
 
+    <!-- search question part -->
+    <section class="middle">
+      <h4 class="white-text">How can we help you?</h4>
+      <input
+        id="search"
+        type="text"
+        class="white browser-default"
+        placeholder="Search help topics..."
+        style="
+          padding: 10px;
+          border-radius: 5px;
+          max-width: 600px;
+          width: 80%;
+          margin-top: 20px;
+          border-style: dashed;
+        "
+      />
+    </section>
 
-</body>
+    <!-- frequently asked questions -->
+    <div class="faq">
+      <h5 class="center-align">Frequently Asked Questions</h5>
+      <ul class="collapsible">
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons"
+              ><img
+                src="images/down.png"
+                style="width: 16px; height: 10px; margin-right: 5px"
+              /> </i
+            >What makes your prices so affordable?
+          </div>
+          <div class="collapsible-body">
+            <span
+              >We partner with trusted local providers and use smart booking
+              tools to offer competitive prices without compromising
+              quality.</span
+            >
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">
+              <img
+                src="images/down.png"
+                style="width: 16px; height: 10px; margin-right: 5px"
+              /> </i
+            >How many destinations can I choose from?
+          </div>
+          <div class="collapsible-body">
+            <span
+              >We currently offer over 150 destinations across 6 continents,
+              with new locations added every season.</span
+            >
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">
+              <img
+                src="images/down.png"
+                style="width: 16px; height: 10px; margin-right: 5px"
+              /> </i
+            >How do you ensure trip quality?
+          </div>
+          <div class="collapsible-body">
+            <span
+              >We work only with top-rated hotels, guides, and transport
+              services—plus, every trip is reviewed by real travelers.</span
+            >
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">
+              <img
+                src="images/down.png"
+                style="width: 16px; height: 10px; margin-right: 5px"
+              /> </i
+            >Can I customize my travel itinerary?
+          </div>
+          <div class="collapsible-body">
+            <span
+              >Absolutely! We offer fully customizable packages to suit your
+              preferences, budget, and travel goals.</span
+            >
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">
+              <img
+                src="images/down.png"
+                style="width: 16px; height: 10px; margin-right: 5px"
+              /> </i
+            >Is customer support available during my trip?
+          </div>
+          <div class="collapsible-body">
+            <span
+              >Yes, our support team is available 24/7 to assist you during your
+              journey—anytime, anywhere.</span
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- contact us form -->
+    <div class="form" style="display: flex; justify-content: center">
+      <form id="supportForm" style="max-width: 500px; width: 100%">
+        <h5 class="center-align" style="font-weight: 300; color: yellow">
+          Contact Us
+        </h5>
+
+        <div class="input-field">
+          <input id="name" type="text" class="validate" required />
+          <label for="name">Your Name</label>
+        </div>
+
+        <div class="input-field">
+          <input id="email" type="email" class="validate" required />
+          <label for="email">Email</label>
+        </div>
+
+        <div class="input-field">
+          <textarea
+            id="message"
+            class="materialize-textarea"
+            required
+          ></textarea>
+          <label for="message">Your Message</label>
+        </div>
+
+        <button
+          class="btn waves-effect waves-light teal"
+          type="submit"
+          name="action"
+          style="margin-top: 10px"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+
+    <!-- page footer -->
+    <footer>
+      <p>© 2025 ExploreEase | All Rights Reserved</p>
+      <div class="socials">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-tiktok"></i>
+      </div>
+    </footer>
+  </body>
 </html>
-
