@@ -3,7 +3,7 @@ import { gameState, canvas, KEYS, gameFinished, isPaused } from "./myJs.js";
 ///////////////////////////////////////
 ///////////////////////////////////////
 class Ball {
-  constructor(x, y, vx, vy, w, h, image, bounceFactor) {
+  constructor(x, y, vx, vy, w, h, image, bounceFactor,size) {
     this.x = x;
     this.y = y;
     this.vx = vx;
@@ -16,6 +16,7 @@ class Ball {
     this.isHit = false;
     this.bounced = 0;
     this.angle = 0;
+    this.initialSize = size;
   }
   update() {
     if (!isPaused && !gameFinished) {
@@ -168,7 +169,7 @@ class GameOver {
     ctx.textAlign = "center"; // e.g., start, center, end
     ctx.textBaseline = "middle"; // e.g., top, middle, bottom
     ctx.fillText(
-      `Score: ${Math.round(this.scoreStart)}`,
+      `${Math.round(this.scoreStart)}`,
       this.x + this.width / 2,
       this.y + this.height / 1.32
     );
