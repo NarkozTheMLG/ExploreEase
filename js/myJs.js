@@ -253,7 +253,7 @@ setInterval(() => {
   spawnBeachBall();
 }, 2000);
 setInterval(() => {
-  if (isPaused || gameFinished) return;
+  if (isPaused || gameFinished|| !gameStart) return;
   totalTime++;
   console.log(`Time: ${totalTime}`);
   if (totalTime == 30) gameFinished = true;
