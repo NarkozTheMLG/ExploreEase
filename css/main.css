@@ -30,7 +30,6 @@
   }
   
   .navbar .navbuttons {
-    list-style: none;
     display: flex;
     gap: 20px;
     
@@ -39,6 +38,14 @@
   .navbar .navbuttons li a {
     color: white;
     text-decoration: none;
+  }
+
+  .navbar .navbuttons li a:hover {
+    color: red;
+  }
+
+  .navbar .navbuttons li a:active {
+    color: yellow;
   }
   
   .hero {
@@ -70,6 +77,16 @@
     font-size: 40px;
   }
   
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
   .search-bar {
     margin-top: 30px;
     display: flex;
@@ -123,50 +140,110 @@
   }
   
   .why {
-    background: #f0f8ff;
-    padding: 40px;
+    background: url('../images/whyBG.jpg') no-repeat center center/cover;
+    color: red;
     text-align: center;
+    padding: 80px 100px;
+  }
+  
+  .why h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .why .subtitle {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: red;
+    margin-bottom: 50px;
   }
   
   .features {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     gap: 40px;
-    margin-top: 20px;
+    flex-wrap: wrap;
   }
   
-  .feature i {
-    font-size: 30px;
-    color: #003366;
+  .feature {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 300px;
+    flex: 1;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature:hover {
+    transform: translateY(-10px);
+  }
+  
+  .feature img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .feature h3 {
+    color: #fff68f;
+    font-size: 18px;
+    margin-bottom: 15px;
   }
   
   .feature p {
-    margin-top: 10px;
-    font-weight: bold;
+    font-size: 14px;
+    color: #f0f0f0;
   }
   
-  .testimonials {
-    padding: 40px;
+  .review {
     text-align: center;
+    padding: 60px 20px;
+    background-color: #f8f8f8;
   }
   
-  .quotes {
+  .review h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  
+  .review-scroll {
     display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px 0;
+  }
+  
+  .review-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .review-scroll::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+  }
+  
+  .quote {
+    flex: 0 0 300px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    scroll-snap-align: start;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-height: 150px;
   }
   
   .quote p {
     font-style: italic;
+    font-size: 16px;
+    margin-bottom: 10px;
   }
   
   .quote span {
-    display: block;
-    margin-top: 10px;
     font-weight: bold;
+    color: #003366;
   }
-  
+
   footer {
     background: #003366;
     color: white;
