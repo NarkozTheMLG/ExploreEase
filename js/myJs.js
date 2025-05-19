@@ -26,7 +26,7 @@ const pausedImg = new Image();
 pausedImg.src = "images/paused.svg";
 
 const chestImg = new Image();
-chestImg.src = "images/chest_1.png";
+chestImg.src = "images/chest_2.png";
 const newChest = new Chest(0, canvas.height, 0, 190, 150, chestImg);
 
 const boomEffect = new Image();
