@@ -27,7 +27,7 @@ pausedImg.src = "images/paused.svg";
 
 const chestImg = new Image();
 chestImg.src = "images/chest_2.png";
-const newChest = new Chest(0, canvas.height, 0, 190, 150, chestImg);
+const newChest = new Chest(canvas.width/2, canvas.height, 0, 190*window.innerWidth / screen.width, 150*window.innerHeight / screen.height, chestImg);
 
 const boomEffect = new Image();
 boomEffect.src = "images/boom_effect.png";
@@ -63,6 +63,12 @@ let assetsLoaded = 0;
 ////////////////////////////////////////////
 //event listener
 ////////////////////////////////////////////
+window.addEventListener("blur", () => {
+  if(!gameFinished){
+    isPaused = true;
+    console.log("Game paused");
+  }
+});
 document.addEventListener("keydown", (event) => {
   if (event.code === "Space" && !gameFinished) 
     isPaused = !isPaused;
@@ -120,48 +126,41 @@ chestImg.onload = function () {
 ////////////////////////////////////////////
 // Spawn and draw 
 ////////////////////////////////////////////
-function drawScene() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.globalAlpha = 1;
-  ctx.drawImage(backGround, 0, 0, canvas.width, canvas.height);
-  if (isPaused) {
-    ctx.save();
+function drawGray(){
     ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // 50% dark overlay
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.restore();
     ctx.save();
-    ctx.drawImage(
-      pausedImg,
-      canvas.width / 2 - canvas.width / 8,
-      canvas.height / 2 - canvas.height / 8,
-      canvas.width / 4,
-      canvas.height / 4
-    );
+  if (isPaused) ctx.drawImage(pausedImg,canvas.width / 2 - canvas.width / 8,canvas.height / 2 - canvas.height / 8,canvas.width / 4,canvas.height / 4);
     ctx.font = "bold 64px Arial";
     ctx.fillStyle = "white";
     ctx.textAlign = "center"; // e.g., start, center, end
     ctx.textBaseline = "middle"; // e.g., top, middle, bottom
     ctx.fillText(`PAUSED!`, canvas.width / 2, canvas.height / 2);
+    ctx.font = "bold 32px Arial";
+    ctx.fillStyle = "gray";
+    ctx.fillText(`Space to resume!`, canvas.width / 2, canvas.height / 2+50);
     ctx.restore();
-  }
+    ctx.save();
+}
+function drawScene() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.globalAlpha = 1;
+  ctx.drawImage(backGround, 0, 0, canvas.width, canvas.height);
 }
 function spawnBeachBall() {
   const itemImg = new Image();
   itemImg.src = "images/beach_ball.png";
   const random = Math.floor(Math.random() * (10 - 3)) + 4;
+  const scaleX = window.innerWidth / screen.width;
   let size = random * 10;
   let velocity = random;
   let startX = size / 10;
   if (sign === -1) startX = canvas.width - size;
-  const newItem = new Ball(
-    startX,
-    size / 10,
-    sign * velocity,
-    -velocity / 2,
-    size,
-    size,
+  const newItem = new Ball(startX,size / 10,sign * velocity,-velocity / 2,size*scaleX,size*scaleX,
     itemImg,
-    0.9
+    0.9,
+    size
   );
   items.push(newItem);
 }
@@ -235,6 +234,7 @@ function gameLoop() {
   drawScene();
   updateItems();
   updateChest();
+  if(isPaused) drawGray(); 
   gameState.gameTime = curTime;
   $("#scoreText").text("Score: " + score);
   if (gameFinished) updateGameOver();
@@ -274,8 +274,16 @@ function resizeCanvas() {
   console.log(`W: ${window.innerWidth}  H: ${window.innerHeight}`);
   canvas.width = newWidth;
   canvas.height = newHeight;
-  const scaleX = window.innerWidth / screen.width;
-  const scaleY = window.innerHeight / screen.height;
+  const scaleX = newWidth / window.innerWidth+0.3;
+  const scaleY = newHeight / window.innerHeight+0.3;
+  newChest.width =190 * scaleX; 
+  newChest.height = 150 * scaleY;
+  console.log(scaleX,scaleY); 
+items.forEach(item => {
+  item.width = item.initialSize * scaleX;
+  item.height = item.initialSize * scaleY;
+  console.log(item.width,item.height); 
+});
   getTable.css(
     "transform",
     `translate(-50%, -50%) scaleX(${scaleX}) scaleY(${scaleY})`
