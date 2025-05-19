@@ -1,0 +1,117 @@
+/* Sustainability Page Common Styles */
+/* Reset and Base Styles */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.section {
+    background-color: #fff;
+}
+
+/* Card Styles */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+    padding: 20px;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Button Styles */
+.btn {
+    background-color: orange;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: red;
+    transform: translateY(-2px);
+}
+
+/* Accordion Styles */
+#sustainability-accordion h3 {
+    background-color: #003366;
+    color: white;
+    padding: 15px;
+    margin: 0;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sustainability-accordion h3:hover {
+    background-color: #004080;
+}
+
+#sustainability-accordion div {
+    background-color: #f0f0f0;
+    padding: 20px;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Stats Section */
+.stats {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
+}
+
+.stats p {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Scroll Progress Bar */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background-color: orange;
+    width: 0;
+    z-index: 1000;
+    transition: width 0.3s ease;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 992px) {
+    .container {
+        width: 85%;
+    }
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+    .card-content {
+        font-size: 14px;
+    }
+    .btn {
+        width: 100%;
+    }
+}

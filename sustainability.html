@@ -1,0 +1,304 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainability - ExploreEase</title>
+    <!-- Materialize CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- Sustainability CSS -->
+    <link rel="stylesheet" href="css/sustainability.css">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery UI for Accordion -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Materialize JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Embedded CSS for Page-Specific Styles -->
+    <style>
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: url('images/sustainability-bg.jpg') no-repeat center center/cover;
+            background-color: rgba(0, 0, 0, 0.5);
+            background-blend-mode: darken;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: orange;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+            text-decoration: underline;
+            text-decoration-color: #003366;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        /* Section Styling */
+        .section {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+        .section h2 {
+            font-size: 36px;
+            color: #003366;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        /* Goals Section */
+        .goals .card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        /* Accordion Section */
+        .accordion-section {
+            background-color: #f8f8f8;
+        }
+        /* Form Section */
+        .form-section {
+            background-color: #fff;
+        }
+        /* Stats Section */
+        .stats {
+            background: url('images/stats-bg.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .stats .counter {
+            font-size: 48px;
+            font-weight: bold;
+            color: orange;
+        }
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            .section h2 {
+                font-size: 28px;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .hero {
+                height: 400px;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .section {
+                padding: 40px 0;
+            }
+            .stats .counter {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">ExploreEase</div>
+        <ul class="navbuttons">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="offices.html">Sales Offices</a></li>
+            <li><a href="bookingform.html">Booking Form</a></li>
+            <li><a href="game.html">Game</a></li>
+            <li><a href="support.html">Contact Us</a></li>
+            <li><a href="sustainability.html">Sustainability</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero" style="background-color: #003366;">
+        <h1>Travel Sustainably with ExploreEase</h1>
+    </div>
+
+    <!-- Introduction Section -->
+    <div class="section">
+        <div class="container">
+            <h2>Our Vision for Sustainable Travel</h2>
+            <p style="font-size: 18px; color: #333; text-align: center; line-height: 1.6;">
+                At ExploreEase, we are committed to preserving the planet’s beauty for future generations. Our sustainability efforts focus on eco-friendly travel, community empowerment, and environmental stewardship.
+            </p>
+        </div>
+    </div>
+
+    <!-- Sustainability Goals (Cards) -->
+    <div class="section goals">
+        <div class="container">
+            <h2>Our Goals</h2>
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/sustainability-goal1.jpg" alt="Eco-Friendly Tours" style="height: 150px; object-fit: cover;">
+                            <span class="card-title" style="color: #003366; text-shadow: 1px 1px 2px #fff;">Eco-Friendly Tours</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Offering carbon-neutral tours with sustainable transport and green accommodations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/sustainability-goal2.jpg" alt="Community Support" style="height: 150px; object-fit:
+
+ cover;">
+                            <span class="card-title" style="color: #003366; text-shadow: 1px 1px 2px #fff;">Community Support</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Empowering local communities through fair trade and cultural preservation initiatives.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/sustainability-goal3.jpg" alt="Waste Reduction" style="height: 150px; object-fit: cover;">
+                            <span class="card-title" style="color: #003366; text-shadow: 1px 1px 2px #fff;">Waste Reduction</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Implementing zero-waste policies and recycling programs across all tours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Section (Animated Counters) -->
+    <div class="section stats">
+        <div class="container">
+            <h2>Our Impact</h2>
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="counter" data-target="5000">0</div>
+                    <p>Tons of CO2 Offset</p>
+                </div>
+                <div class="col s12 m4">
+                    <div class="counter" data-target="1000">0</div>
+                    <p>Communities Supported</p>
+                </div>
+                <div class="col s12 m4">
+                    <div class="counter" data-target="25000">0</div>
+                    <p>Eco-Tours Conducted</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initiatives (Accordion) -->
+    <div class="section accordion-section">
+        <div class="container">
+            <h2>Our Initiatives</h2>
+            <div id="sustainability-accordion">
+                <h3>Green Travel Programs</h3>
+                <div>
+                    <p>Promoting eco-friendly options like electric buses, bike tours, and low-impact itineraries.</p>
+                </div>
+                <h3>Conservation Partnerships</h3>
+                <div>
+                    <p>Collaborating with global organizations to protect natural habitats and biodiversity.</p>
+                </div>
+                <h3>Sustainable Partnerships</h3>
+                <div>
+                    <p>Working with hotels and vendors that prioritize sustainability and ethical practices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="section form-section">
+        <div class="container">
+            <h2>Join Our Sustainability Mission</h2>
+            <form id="sustainability-form">
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="name" type="text" class="validate" required pattern="[A-Za-z\s]{2,}">
+                        <label for="name">Your Name</label>
+                        <span class="helper-text" data-error="Please enter a valid name"></span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="email" type="email" class="validate" required>
+                        <label for="email">Your Email</label>
+                        <span class="helper-text" data-error="Please enter a valid email"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="message" class="materialize-textarea" required minlength="10"></textarea>
+                        <label for="message">Your Message</label>
+                        <span class="helper-text" data-error="Message must be at least 10 characters"></span>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" style="background-color: orange; margin-top: 20px;">
+                    Submit <i class="fas fa-paper-plane right"></i>
+                </button>
+            </form>
+            <p id="form-message" style="color: #003366; margin-top: 20px; font-size: 16px;"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 ExploreEase | All Rights Reserved</p>
+        <div class="socials">
+            <i class="fab fa-facebook-f icon"></i>
+            <i class="fab fa-twitter icon"></i>
+            <i class="fab fa-instagram icon"></i>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/sustainability.js"></script>
+</body>
+</html>
