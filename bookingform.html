@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Booking</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+        }
+        .container {
+            display: flex;
+            margin: 20px;
+        }
+        .form-section, .tour-details {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .counter-group {
+            display: flex;
+            align-items: center;
+        }
+        .counter-group button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .counter-group button:hover {
+            background-color: #0056b3;
+        }
+        .counter-group span {
+            margin: 0 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #total {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .tour-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">ExploreEase</div>
+    <div class="container">
+        <div class="form-section">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone">
+            </div>
+            <div class="form-group">
+                <label>Adults</label>
+                <div class="counter-group">
+                    <button onclick="updateCounter('adults', -1)">-</button>
+                    <span id="adults">1</span>
+                    <button onclick="updateCounter('adults', 1)">+</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Kids</label>
+                <div class="counter-group">
+                    <button onclick="updateCounter('kids', -1)">-</button>
+                    <span id="kids">0</span>
+                    <button onclick="updateCounter('kids', 1)">+</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="coupon">I have a coupon</label>
+                <input type="text" id="coupon" placeholder="Enter coupon code">
+                <button onclick="applyCoupon()">Apply</button>
+            </div>
+            <div class="form-group">
+                <label>Payment Info</label>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                </div>
+                <div class="form-group">
+                    <label for="expiryDate">Expiry Date (MM/YY)</label>
+                    <input type="text" id="expiryDate" placeholder="MM/YY">
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123">
+                </div>
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="terms">
+                <label for="terms" style="display: inline;">I agree to the Terms and Conditions</label>
+            </div>
+            <div id="total">Total: $200.00</div>
+            <button onclick="confirmBooking()">Confirm Booking</button>
+        </div>
+        <div class="tour-details">
+            <h2>Tour Details</h2>
+            <div class="tour-image-placeholder">Tour Image Placeholder</div>
+            <p><strong>Tour Name:</strong> European Adventure Tour</p>
+            <p><strong>Check-In:</strong> 15 May 2025 14:00</p>
+            <p><strong>Check-Out:</strong> 17 May 2025 12:00</p>
+            <p><strong>Tour Type:</strong> Guided Group Tour</p>
+            <p><strong>Guests:</strong> 1 Adult, 0 Kids</p>
+        </div>
+    </div>
+
+    <script>
+        let basePrice = 200.00;
+        let discountApplied = false;
+
+        function updateCounter(type, change) {
+            let element = $(`#${type}`);
+            let value = parseInt(element.text());
+            value = Math.max(type === 'adults' ? 1 : 0, value + change); 
+            element.text(value);
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let adults = parseInt($('#adults').text());
+            let kids = parseInt($('#kids').text());
+            let total = basePrice * (adults + kids * 0.5); // Kids at 50% price
+            if (discountApplied) {
+                total *= 0.9; // Apply 10% discount if coupon used
+            }
+            $('#total').text(`Total: $${total.toFixed(2)}`);
+            $('.tour-details p:nth-child(7)').text(`Guests: ${adults} Adult${adults > 1 ? 's' : ''}, ${kids} Kid${kids !== 1 ? 's' : ''}`);
+            
+        }
+
+        function applyCoupon() {
+            let coupon = $('#coupon').val().toUpperCase();
+            if (coupon === 'DISCOUNT10') {
+                discountApplied = true;
+                updateTotal();
+                alert('Coupon applied successfully! 10% discount applied.');
+            } else {
+                alert('Invalid coupon code!');
+            }
+        }
+
+        function validateFields() {
+            let firstName = $('#firstName').val().trim();
+            let lastName = $('#lastName').val().trim();
+            let email = $('#email').val().trim();
+            let phone = $('#phone').val().trim();
+            let cardNumber = $('#cardNumber').val().trim();
+            let expiryDate = $('#expiryDate').val().trim();
+            let cvv = $('#cvv').val().trim();
+
+            if (!firstName || !lastName || !email || !phone || !cardNumber || !expiryDate || !cvv) {
+                alert('Please fill in all fields');
+                return false;
+            }
+            return true;
+        }
+
+        function confirmBooking() {
+            if (validateFields() && $('#terms').is(':checked')) {
+                alert('Booking confirmed! Thank you for your reservation.');
+            } else if (!$('#terms').is(':checked')) {
+                alert('Please agree to the Terms and Conditions to proceed.');
+            }
+        }
+    </script>
+</body>
+</html>
