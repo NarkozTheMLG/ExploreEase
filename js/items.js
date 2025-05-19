@@ -3,7 +3,7 @@ import { gameState, canvas, KEYS, gameFinished, isPaused } from "./myJs.js";
 ///////////////////////////////////////
 ///////////////////////////////////////
 class Ball {
-  constructor(x, y, vx, vy, w, h, image, bounceFactor,size) {
+  constructor(x, y, vx, vy, w, h, image, bounceFactor, size) {
     this.x = x;
     this.y = y;
     this.vx = vx;

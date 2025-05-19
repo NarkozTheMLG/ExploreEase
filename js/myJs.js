@@ -27,7 +27,14 @@ pausedImg.src = "images/paused.svg";
 
 const chestImg = new Image();
 chestImg.src = "images/chest_2.png";
-const newChest = new Chest(canvas.width/2, canvas.height, 0, 190*window.innerWidth / screen.width, 150*window.innerHeight / screen.height, chestImg);
+const newChest = new Chest(
+  canvas.width / 2,
+  canvas.height,
+  0,
+  (190 * window.innerWidth) / screen.width,
+  (150 * window.innerHeight) / screen.height,
+  chestImg
+);
 
 const boomEffect = new Image();
 boomEffect.src = "images/boom_effect.png";
@@ -45,7 +52,8 @@ const gravity = 8;
 export let gameFinished = false;
 export let isPaused = false;
 export const KEYS = {};
-let startTime = Date.now();export const gameState = {
+let startTime = Date.now();
+export const gameState = {
   gameTime: 0,
   gameSpeed: 1,
 };
@@ -65,14 +73,13 @@ let assetsLoaded = 0;
 //event listener
 ////////////////////////////////////////////
 window.addEventListener("blur", () => {
-  if(!gameFinished){
+  if (!gameFinished) {
     isPaused = true;
     console.log("Game paused");
   }
 });
 document.addEventListener("keydown", (event) => {
-  if (event.code === "Space" && !gameFinished) 
-    isPaused = !isPaused;
+  if (event.code === "Space" && !gameFinished) isPaused = !isPaused;
 });
 getBackButton.on("mouseover", function () {
   $(this).css("transform", `scale(1.2)`);
@@ -125,24 +132,31 @@ chestImg.onload = function () {
   if (assetsLoaded === 3) drawScene();
 };
 ////////////////////////////////////////////
-// Spawn and draw 
+// Spawn and draw
 ////////////////////////////////////////////
-function drawGray(){
-    ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // 50% dark overlay
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.restore();
-    ctx.save();
-  if (isPaused) ctx.drawImage(pausedImg,canvas.width / 2 - canvas.width / 8,canvas.height / 2 - canvas.height / 8,canvas.width / 4,canvas.height / 4);
-    ctx.font = "bold 64px Arial";
-    ctx.fillStyle = "white";
-    ctx.textAlign = "center"; // e.g., start, center, end
-    ctx.textBaseline = "middle"; // e.g., top, middle, bottom
-    ctx.fillText(`PAUSED!`, canvas.width / 2, canvas.height / 2);
-    ctx.font = "bold 32px Arial";
-    ctx.fillStyle = "gray";
-    ctx.fillText(`Space to resume!`, canvas.width / 2, canvas.height / 2+50);
-    ctx.restore();
-    ctx.save();
+function drawGray() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // 50% dark overlay
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.restore();
+  ctx.save();
+  if (isPaused)
+    ctx.drawImage(
+      pausedImg,
+      canvas.width / 2 - canvas.width / 8,
+      canvas.height / 2 - canvas.height / 8,
+      canvas.width / 4,
+      canvas.height / 4
+    );
+  ctx.font = "bold 64px Arial";
+  ctx.fillStyle = "white";
+  ctx.textAlign = "center"; // e.g., start, center, end
+  ctx.textBaseline = "middle"; // e.g., top, middle, bottom
+  ctx.fillText(`PAUSED!`, canvas.width / 2, canvas.height / 2);
+  ctx.font = "bold 32px Arial";
+  ctx.fillStyle = "gray";
+  ctx.fillText(`Space to resume!`, canvas.width / 2, canvas.height / 2 + 50);
+  ctx.restore();
+  ctx.save();
 }
 function drawScene() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -158,7 +172,13 @@ function spawnBeachBall() {
   let velocity = random;
   let startX = size / 10;
   if (sign === -1) startX = canvas.width - size;
-  const newItem = new Ball(startX,size / 10,sign * velocity,-velocity / 2,size*scaleX,size*scaleX,
+  const newItem = new Ball(
+    startX,
+    size / 10,
+    sign * velocity,
+    -velocity / 2,
+    size * scaleX,
+    size * scaleX,
     itemImg,
     0.9,
     size
@@ -172,7 +192,9 @@ function updateItems() {
   items.forEach((item) => {
     if (isColliding(newChest, item)) {
       item.isHit = true;
-      score += 14 - item.width / 10;
+      score += Math.round(
+        Math.max(500, Math.min(2000, 2000 - ((item.width - 20) / 80) * 1500))
+      );
     }
   });
   items.forEach((item) => item.update());
@@ -205,7 +227,6 @@ function updateItems() {
 }
 function updateTimeBar() {
   curX += (maxBarX - minBarX) / (30 * 20);
-  if (curX >= maxBarX) curX = 56;
   timebar2.style.width = `${curX}px`;
 }
 function updateChest() {
@@ -235,7 +256,7 @@ function gameLoop() {
   drawScene();
   updateItems();
   updateChest();
-  if(isPaused) drawGray(); 
+  if (isPaused) drawGray();
   gameState.gameTime = curTime;
   $("#scoreText").text("Score: " + score);
   if (gameFinished) updateGameOver();
@@ -253,10 +274,10 @@ setInterval(() => {
   spawnBeachBall();
 }, 2000);
 setInterval(() => {
-  if (isPaused || gameFinished|| !gameStart) return;
+  if (isPaused || gameFinished || !gameStart) return;
   totalTime++;
   console.log(`Time: ${totalTime}`);
-  if (totalTime == 30) gameFinished = true;
+  if (totalTime == 31) gameFinished = true;
 }, 1000);
 setInterval(() => {
   if (isPaused || gameFinished || !gameStart) return;
@@ -276,16 +297,16 @@ function resizeCanvas() {
   console.log(`W: ${window.innerWidth}  H: ${window.innerHeight}`);
   canvas.width = newWidth;
   canvas.height = newHeight;
-  const scaleX = newWidth / window.innerWidth+0.3;
-  const scaleY = newHeight / window.innerHeight+0.3;
-  newChest.width =190 * scaleX; 
+  const scaleX = newWidth / window.innerWidth + 0.3;
+  const scaleY = newHeight / window.innerHeight + 0.3;
+  newChest.width = 190 * scaleX;
   newChest.height = 150 * scaleY;
-  console.log(scaleX,scaleY); 
-items.forEach(item => {
-  item.width = item.initialSize * scaleX;
-  item.height = item.initialSize * scaleY;
-  console.log(item.width,item.height); 
-});
+  console.log(scaleX, scaleY);
+  items.forEach((item) => {
+    item.width = item.initialSize * scaleX;
+    item.height = item.initialSize * scaleY;
+    console.log(item.width, item.height);
+  });
   getTable.css(
     "transform",
     `translate(-50%, -50%) scaleX(${scaleX}) scaleY(${scaleY})`
