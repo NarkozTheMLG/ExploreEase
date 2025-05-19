@@ -52,6 +52,7 @@ let startTime = Date.now();export const gameState = {
 let totalTime = 0;
 let score = 0;
 let sign = 1;
+let gameStart = false;
 
 let curX = 56; //56dan baslio
 const minBarX = 56;
@@ -248,6 +249,7 @@ gameLoop();
 setInterval(() => {
   if (isPaused || gameFinished) return;
   if (Math.random() < 0.5) sign *= -1;
+  gameStart = true;
   spawnBeachBall();
 }, 2000);
 setInterval(() => {
@@ -257,7 +259,7 @@ setInterval(() => {
   if (totalTime == 30) gameFinished = true;
 }, 1000);
 setInterval(() => {
-  if (isPaused || gameFinished) return;
+  if (isPaused || gameFinished || !gameStart) return;
   updateTimeBar();
 }, 50);
 
