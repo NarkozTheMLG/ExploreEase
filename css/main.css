@@ -48,7 +48,7 @@
     color: yellow;
   }
   
-  .hero {
+  .middle {
     background-image: url('../images/indexBG.png');
     height: 450px;
     color: orange;
@@ -65,14 +65,14 @@
     
   }
   
-  .hero h1 {
+  .middle h1 {
     font-size: 36px;
     line-height: 1.5;
     text-decoration: solid;
     text-decoration-color: #003366;
   }
   
-  .hero span {
+  .middle span {
     font-weight: bold;
     font-size: 40px;
   }
@@ -86,6 +86,7 @@
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
+
 
   .search-bar {
     margin-top: 30px;
@@ -105,6 +106,14 @@
     background: orange;
     color: white;
     border: none;
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  .search-bar button:hover {
+    background: red;
+    color: white;
+    border: #fff68f;
     cursor: pointer;
   }
   
