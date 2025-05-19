@@ -1,0 +1,156 @@
+/* Sustainability Page Styles */
+
+/* Container */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Section Base */
+.section {
+    background: linear-gradient(180deg, #ffffff, #f8f8f8);
+    transition: opacity 0.3s ease;
+}
+
+/* Card Styles */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+    padding: 20px;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Button Styles */
+.btn {
+    background-color: orange;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', Arial, sans-serif;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: red;
+    transform: scale(1.05);
+}
+
+/* Collapsible Styles */
+.collapsible {
+    border: none;
+    box-shadow: none;
+}
+
+.collapsible-header {
+    background-color: #003366;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.collapsible-header:hover {
+    background-color: #004080;
+}
+
+.collapsible-header i {
+    margin-right: 10px;
+}
+
+.collapsible-body {
+    background-color: #f0f0f0;
+    padding: 20px;
+    font-size: 15px;
+    color: #333;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Stats Section */
+.stats p {
+    font-size: 16px;
+    margin-top: 10px;
+    color: white;
+}
+
+/* Progress Bar */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background-color: orange;
+    width: 0;
+    z-index: 1000;
+    transition: width 0.3s ease;
+}
+
+/* Footer Newsletter */
+#newsletter-form .input-field {
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+#newsletter-form .btn {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Modal Styles */
+.modal {
+    border-radius: 10px;
+    max-width: 600px;
+}
+
+.modal-content h4 {
+    color: #003366;
+    font-size: 24px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 992px) {
+    .container {
+        width: 85%;
+    }
+    .card {
+        margin-bottom: 20px;
+    }
+    #newsletter-form .input-field {
+        max-width: 250px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+    .card-content {
+        font-size: 14px;
+    }
+    .btn {
+        width: 100%;
+    }
+    .testimonial-slider {
+        gap: 15px;
+    }
+    .testimonial {
+        flex: 0 0 250px;
+    }
+}
