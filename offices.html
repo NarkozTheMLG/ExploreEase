@@ -6,25 +6,33 @@
     <title>Sales Offices</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        body {
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
+       html, body {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #333;
         }
-        .navbar {
-            margin-bottom: 10px;
-            background: #003366;
-            color: white;
-            padding: 10px 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 90%;
-            display: flex;
-            justify-content: space-between;
-            
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.navbar {
+    top: 0;
+    background: #003366;
+    color: white;
+    padding: 15px 109px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+}
         .navbar .logo {
             font-size: 24px;
             font-weight: bold;
@@ -52,7 +60,8 @@
         .container {
             max-width: 1200px;
             margin: 20px auto;
-            padding: 0 15px;
+            padding: 0px 15px;
+            padding-top: 60px;
         }
         .filter-section {
             display: flex;
