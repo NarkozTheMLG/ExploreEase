@@ -3,14 +3,14 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
+}
   
-  body {
+body {
     background: #fff;
     color: #333;
-  }
+}
   
-  .navbar {
+.navbar {
     background: #003366;
     color: white;
     padding: 15px 100px;
@@ -21,34 +21,33 @@
     display: flex;
     justify-content: space-between;
     position: fixed;
-    
-  }
+}
   
-  .navbar .logo {
+.navbar .logo {
     font-size: 24px;
     font-weight: bold;
-  }
+}
   
-  .navbar .navbuttons {
+.navbar .navbuttons {
     display: flex;
     gap: 20px;
     
-  }
+}
   
-  .navbar .navbuttons li a {
+.navbar .navbuttons li a {
     color: white;
     text-decoration: none;
-  }
+}
 
-  .navbar .navbuttons li a:hover {
+.navbar .navbuttons li a:hover {
     color: red;
-  }
+}
 
-  .navbar .navbuttons li a:active {
+.navbar .navbuttons li a:active {
     color: yellow;
-  }
+}
   
-  .middle {
+.middle {
     background-image: url('../images/indexBG.png');
     height: 450px;
     color: orange;
@@ -63,176 +62,176 @@
     background-size: cover;
     background-position: center;
     
-  }
+}
   
-  .middle h1 {
+.middle h1 {
     font-size: 36px;
     line-height: 1.5;
     text-decoration: solid;
     text-decoration-color: #003366;
-  }
+}
   
-  .middle span {
+.middle span {
     font-weight: bold;
     font-size: 40px;
-  }
+}
   
-  .card {
+.card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-  }
+}
   
-  .card:hover {
+.card:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  }
+}
 
 
-  .search-bar {
+.search-bar {
     margin-top: 30px;
     display: flex;
     justify-content: center;
     gap: 10px;
-  }
+}
   
-  .search-bar select,
-  .search-bar input,
-  .search-bar button {
+.search-bar select,
+.search-bar input,
+.search-bar button {
     padding: 10px;
     font-size: 14px;
-  }
+}
   
-  .search-bar button {
+.search-bar button {
     background: orange;
     color: white;
     border: none;
     cursor: pointer;
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  }
-  .search-bar button:hover {
+}
+.search-bar button:hover {
     background: red;
     color: white;
     border: #fff68f;
     cursor: pointer;
-  }
+}
   
-  .offers {
+.offers {
     padding: 40px;
     text-align: center;
-  }
+}
   
-  .offers .cards {
+.offers .cards {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
     margin-top: 20px;
-  }
+}
   
-  .card {
+.card {
     width: 200px;
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
-  }
+}
   
-  .card img {
+.card img {
     width: 100%;
     height: 120px;
     object-fit: cover;
-  }
+}
   
-  .card p {
+.card p {
     padding: 10px;
     font-weight: bold;
-  }
+}
   
-  .why {
+.why {
     background: url('../images/whyBG.jpg') no-repeat center center/cover;
     color: red;
     text-align: center;
     padding: 80px 100px;
-  }
+}
   
-  .why h2 {
+.why h2 {
     font-size: 32px;
     margin-bottom: 10px;
-  }
+}
   
-  .why .subtitle {
+.why .subtitle {
     font-size: 16px;
     letter-spacing: 1px;
     color: red;
     margin-bottom: 50px;
-  }
+}
   
-  .features {
+.features {
     display: flex;
     justify-content: space-around;
     gap: 40px;
     flex-wrap: wrap;
-  }
+}
   
-  .feature {
+.feature {
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 12px;
     padding: 30px;
     max-width: 300px;
     flex: 1;
     transition: transform 0.3s ease;
-  }
+}
   
-  .feature:hover {
+.feature:hover {
     transform: translateY(-10px);
-  }
+}
   
-  .feature img {
+.feature img {
     width: 60px;
     height: 60px;
     margin-bottom: 20px;
-  }
+}
   
-  .feature h3 {
+.feature h3 {
     color: #fff68f;
     font-size: 18px;
     margin-bottom: 15px;
-  }
+}
   
-  .feature p {
+.feature p {
     font-size: 14px;
     color: #f0f0f0;
-  }
+}
   
-  .review {
+.review {
     text-align: center;
     padding: 60px 20px;
     background-color: #f8f8f8;
-  }
+}
   
-  .review h2 {
+.review h2 {
     font-size: 28px;
     margin-bottom: 30px;
-  }
+}
   
-  .review-scroll {
+.reviewScroll {
     display: flex;
     gap: 20px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 20px 0;
-  }
+}
   
-  .review-scroll::-webkit-scrollbar {
+.reviewScroll::-webkit-scrollbar {
     height: 8px;
-  }
+}
   
-  .review-scroll::-webkit-scrollbar-thumb {
+.reviewScroll::-webkit-scrollbar-thumb {
     background-color: #ccc;
     border-radius: 10px;
-  }
+}
   
-  .quote {
+.quote {
     flex: 0 0 300px;
     background-color: white;
     padding: 20px;
@@ -240,27 +239,27 @@
     scroll-snap-align: start;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     min-height: 150px;
-  }
+}
   
-  .quote p {
+.quote p {
     font-style: italic;
     font-size: 16px;
     margin-bottom: 10px;
-  }
+}
   
-  .quote span {
+.quote span {
     font-weight: bold;
     color: #003366;
-  }
+}
 
-  footer {
+footer {
     background: #003366;
     color: white;
     text-align: center;
     padding: 20px;
-  }
+}
   
-  .socials i {
+.socials i {
     margin: 0 10px;
     cursor: pointer;
-  }
+}

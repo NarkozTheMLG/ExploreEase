@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support</title>
 
-    <!-- Materialize CSS CDN -->
+    <!-- materialize CSS CDN -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-    <!-- Materialize JavaScript CDN -->
+    <!-- materialize javascript CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -15,13 +15,12 @@
   <script src="js/support.js"></script>
 
   <style>
-    
 
     .faq h5 {
       font-weight: bold;
     }
 
-    .form-section {
+    .form{
       background-color: #f2f2f2;
       padding: 30px;
       border-radius: 10px;
@@ -57,7 +56,7 @@
 </div>
 
 
-
+<!-- search question part -->
   <section class="middle">
     <h4 class="white-text">How can we help you?</h4>
     <input
@@ -65,7 +64,7 @@
       type="text"
       class="white browser-default"
       placeholder="Search help topics..."
-      style="padding: 10px; border-radius: 5px; max-width: 600px; width: 80%; margin-top: 20px;">
+      style="padding: 10px; border-radius: 5px; max-width: 600px; width: 80%; margin-top: 20px; border-style: dashed;">
   </section>
 
 
@@ -106,24 +105,25 @@
   </div>
 
   <!-- contact us form -->
-  <div class="form-section">
-    <h5 class="center-align">Contact Us</h5>
-    <form id="supportForm">
+  <div class="form" style="display: flex; justify-content: center;">
+    <form id="supportForm" style="max-width: 500px; width: 100%;">
+      <h5 class="center-align" style="font-weight: 300; color: yellow">Contact Us</h5>
+  
       <div class="input-field">
         <input id="name" type="text" class="validate" required>
         <label for="name">Your Name</label>
       </div>
-
+  
       <div class="input-field">
         <input id="email" type="email" class="validate" required>
         <label for="email">Email</label>
       </div>
-
+  
       <div class="input-field">
         <textarea id="message" class="materialize-textarea" required></textarea>
         <label for="message">Your Message</label>
       </div>
-
+  
       <button class="btn waves-effect waves-light teal" type="submit" name="action" style="margin-top: 10px;">Submit</button>
     </form>
   </div>
@@ -135,7 +135,7 @@
       <i class="fab fa-facebook"></i> 
       <i class="fab fa-instagram"></i>
       <i class="fab fa-twitter"></i>
-      <i class="fab fa-linkedin"></i>
+      <i class="fab fa-tiktok"></i>
     </div>
   </footer>
 
