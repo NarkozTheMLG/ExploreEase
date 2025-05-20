@@ -5,6 +5,9 @@ const ctx = canvas.getContext("2d");
 
 const getTable = $("table");
 const getBackButton = $("#back");
+const getTimeBar1 = $("#timebar1");
+const getTimeBar2 = $("#timebar2");
+const getScore = $("#score");
 
 const gameOverImg = new Image();
 gameOverImg.src = "images/game_over.svg";
@@ -301,6 +304,22 @@ function resizeCanvas() {
   const scaleY = newHeight / window.innerHeight + 0.3;
   newChest.width = 190 * scaleX;
   newChest.height = 150 * scaleY;
+  const ascaleX = window.innerWidth / screen.width;
+  const ascaleY = window.innerHeight / screen.height;
+
+  getTimeBar1.css(
+    "transform",
+    `translate(-80%, 0%) scale(${ascaleX}, ${ascaleY})`
+  );
+
+  getTimeBar2.css(
+    "transform",
+    `scale(${ascaleX}, ${ascaleY})`
+  );
+  getScore.css(
+    "transform",
+    `scale(${ascaleX}, ${ascaleY})`
+  );
   console.log(scaleX, scaleY);
   items.forEach((item) => {
     item.width = item.initialSize * scaleX;
@@ -313,7 +332,7 @@ function resizeCanvas() {
   );
   getBackButton.css(
     "transform",
-    `translate(0%, 0%) scaleX(${scaleX}) scaleY(${scaleY})`
+    `translate(0%, 0%) scaleX(${ascaleX}) scaleY(${ascaleY})`
   );
 }
 function resizeOnLoad() {
